@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=David+Libre:wght@400;500;700&family=Heebo:wght@300;400;500;600;700&family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body{margin:0;background:oklch(0.985 0 0);}
+    a{color:oklch(0.42 0.01 260)} a:hover{color:oklch(0.3 0.01 260)}
+  </style>
+</helmet>
+<div dir="rtl" style="font-family:'Heebo',sans-serif;color:oklch(0.32 0 0);background:oklch(0.985 0 0);min-height:100%;">
+  <div style="padding:40px 6vw 0;">
+    <a href="index.dc.html" style="text-decoration:none;color:inherit;">
+      <h1 style="font-family:'Rubik',sans-serif;font-weight:200;font-size:clamp(36px,6vw,64px);margin:0;line-height:1;letter-spacing:0.5px;">לירז אקסלרד</h1>
+    </a>
+    <span style="font-size:16px;color:oklch(0.55 0 0);line-height:1;">בלה בלה בלה</span>
+  </div>
+
+  <section style="max-width:640px;margin:0 auto;padding:64px 6vw 40px;">
+    <div>
+      <h1 style="font-family:'David Libre',serif;font-weight:500;font-size:clamp(28px,3.5vw,38px);margin:0 0 20px;">קצת עליי</h1>
+      <p style="font-size:17px;line-height:1.85;color:oklch(0.4 0 0);margin:0 0 18px;">שמי לירז אקסלרד. במשך יותר מעשור עבדתי כמנהל מוצר בחברות טכנולוגיה — בונה, מתעדף, ומקשיב. במקביל, לפני כעשר שנים, פגשתי מדיטציה. מה שהתחיל כניסיון להירגע הפך לתרגול יומיומי, ובהמשך ללימוד מעמיק של MBSR ובודהיזם.</p>
+      <p style="font-size:17px;line-height:1.85;color:oklch(0.4 0 0);margin:0 0 18px;">לפני כשנתיים עברתי לברלין. המעבר הזה — מבחירה, לא מבריחה — לימד אותי הרבה על להתחיל מחדש בלי לדעת את כל התשובות. היום אני מלווה אנשים בשלושה מסלולים שקרובים ללב שלי: מדיטציה, ניהול מוצר, ומעברים משמעותיים בחיים.</p>
+      <p style="font-size:17px;line-height:1.85;color:oklch(0.4 0 0);margin:0;">אני כותב כאן פעם בשבועיים בערך — בעיקר על מה שלמדתי בדרך הקשה, ולפעמים גם בדרך הקלה.</p>
+    </div>
+  </section>
+
+  <section style="max-width:900px;margin:0 auto;padding:40px 6vw 100px;">
+    <h2 style="font-family:'David Libre',serif;font-weight:500;font-size:24px;margin:0 0 28px;">מה שאני עושה</h2>
+    <div style="display:flex;flex-direction:column;gap:28px;">
+      <div>
+        <h3 style="font-size:17px;margin:0 0 8px;">מדיטציה — MBSR ובודהיזם</h3>
+        <p style="font-size:15px;line-height:1.75;color:oklch(0.45 0 0);margin:0;">קבוצות ומפגשים אישיים, מתוך תרגול ולא מתוך תיאוריה בלבד.</p>
+      </div>
+      <div>
+        <h3 style="font-size:17px;margin:0 0 8px;">ליווי בניהול מוצר</h3>
+        <p style="font-size:15px;line-height:1.75;color:oklch(0.45 0 0);margin:0;">שיחות אחת-על-אחת עם מנהלות ומנהלי מוצר — מהתחלת הדרך ועד שאלות מורכבות יותר.</p>
+      </div>
+      <div>
+        <h3 style="font-size:17px;margin:0 0 8px;">ליווי וצמיחה</h3>
+        <p style="font-size:15px;line-height:1.75;color:oklch(0.45 0 0);margin:0;">ליווי במעברים גדולים, כולל רילוקיישן לברלין, וסיורי היכרות רגליים בעיר בשבילי מי שרוצה לחוות אותה כמו מקומי.</p>
+      </div>
+    </div>
+    <a href="contact.dc.html" style="display:inline-block;margin-top:36px;font-size:15px;font-weight:600;text-decoration:none;">רוצים לדבר? צרו קשר ←</a>
+  </section>
+
+  <dc-import name="Footer" dir="rtl" name-label="לירז אקסלרד" email="hello@lirazaxelrad.com" socials="{{socials}}" mirror-href="en.dc.html" mirror-label="English site" copyright-text="© 2026 לירז אקסלרד" hint-size="100%,160px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      socials: [{label: 'LinkedIn', href: '#'}, {label: 'Instagram', href: '#'}]
+    };
+  }
+}
+</script>
+</body>
+</html>

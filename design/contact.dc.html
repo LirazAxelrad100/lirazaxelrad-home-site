@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=David+Libre:wght@400;500;700&family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body{margin:0;background:oklch(0.985 0 0);}
+    a{color:oklch(0.42 0.01 260)} a:hover{color:oklch(0.3 0.01 260)}
+    input,textarea,select{font-family:'Heebo',sans-serif;}
+  </style>
+</helmet>
+<div dir="rtl" style="font-family:'Heebo',sans-serif;color:oklch(0.32 0 0);background:oklch(0.985 0 0);min-height:100%;">
+  <div style="padding:40px 6vw 0;">
+    <a href="index.dc.html" style="text-decoration:none;color:inherit;">
+      <h1 style="font-family:'Rubik',sans-serif;font-weight:200;font-size:clamp(36px,6vw,64px);margin:0;line-height:1;letter-spacing:0.5px;">לירז אקסלרד</h1>
+    </a>
+    <span style="font-size:16px;color:oklch(0.55 0 0);line-height:1;">בלה בלה בלה</span>
+  </div>
+
+  <section style="max-width:640px;margin:0 auto;padding:64px 6vw 100px;">
+    <h1 style="font-family:'David Libre',serif;font-weight:500;font-size:clamp(28px,3.5vw,38px);margin:0 0 14px;">צור קשר</h1>
+    <p style="font-size:16px;line-height:1.7;color:oklch(0.5 0 0);margin:0 0 40px;">מתלבטים לגבי ליווי, רוצים לספר לי מה עורר בכם משהו שכתבתי, או סתם להגיד שלום — אשמח לשמוע.</p>
+
+    <form style="display:flex;flex-direction:column;gap:18px;">
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <label style="font-size:14px;color:oklch(0.45 0 0);">שם</label>
+        <input type="text" style="border:1px solid oklch(0.9 0 0);border-radius:4px;padding:12px 14px;font-size:15px;background:white;color:inherit;" placeholder="השם שלך">
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <label style="font-size:14px;color:oklch(0.45 0 0);">אימייל</label>
+        <input type="email" style="border:1px solid oklch(0.9 0 0);border-radius:4px;padding:12px 14px;font-size:15px;background:white;color:inherit;" placeholder="you@example.com">
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <label style="font-size:14px;color:oklch(0.45 0 0);">מה מעניין אותך?</label>
+        <select style="border:1px solid oklch(0.9 0 0);border-radius:4px;padding:12px 14px;font-size:15px;background:white;color:inherit;">
+          <option>מדיטציה</option>
+          <option>ליווי בניהול מוצר</option>
+          <option>ליווי וצמיחה / ברלין</option>
+          <option>משהו אחר</option>
+        </select>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <label style="font-size:14px;color:oklch(0.45 0 0);">הודעה</label>
+        <textarea rows="5" style="border:1px solid oklch(0.9 0 0);border-radius:4px;padding:12px 14px;font-size:15px;background:white;color:inherit;resize:vertical;" placeholder="ספרו לי קצת..."></textarea>
+      </div>
+      <button type="submit" style="align-self:flex-start;background:oklch(0.42 0.01 260);color:white;border:none;border-radius:4px;padding:13px 32px;font-size:15px;font-weight:600;cursor:pointer;font-family:'Heebo',sans-serif;">שליחה</button>
+    </form>
+
+    <div style="margin-top:56px;padding-top:32px;border-top:1px solid oklch(0.9 0 0);display:flex;gap:28px;flex-wrap:wrap;">
+      <a href="mailto:hello@lirazaxelrad.com" style="font-size:15px;text-decoration:none;">hello@lirazaxelrad.com</a>
+      <a href="#" style="font-size:15px;text-decoration:none;">LinkedIn</a>
+      <a href="#" style="font-size:15px;text-decoration:none;">Instagram</a>
+    </div>
+  </section>
+
+  <dc-import name="Footer" dir="rtl" name-label="לירז אקסלרד" email="hello@lirazaxelrad.com" socials="{{socials}}" mirror-href="en.dc.html" mirror-label="English site" copyright-text="© 2026 לירז אקסלרד" hint-size="100%,160px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      navItems: [
+        {label: 'קצת עליי', href: 'about.dc.html'},
+        {label: 'כתיבה', href: 'writing.dc.html'},
+        {label: 'צור קשר', href: 'contact.dc.html'}
+      ],
+      socials: [{label: 'LinkedIn', href: '#'}, {label: 'Instagram', href: '#'}]
+    };
+  }
+}
+</script>
+</body>
+</html>

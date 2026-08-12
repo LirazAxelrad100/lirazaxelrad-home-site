@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="./image-slot.js"></script>
+  <style>
+    body{margin:0;background:oklch(0.985 0 0);}
+    a{color:oklch(0.42 0.01 260)} a:hover{color:oklch(0.3 0.01 260)}
+  </style>
+</helmet>
+<div dir="rtl" style="font-family:'Rubik',sans-serif;color:oklch(0.32 0 0);background:oklch(0.985 0 0);min-height:100vh;display:flex;flex-direction:column;overflow:hidden;">
+
+  <div style="padding:40px 6vw 0;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;">
+    <div style="display:flex;flex-direction:column;gap:0px;">
+      <a href="#" onClick="{{reset}}" style="text-decoration:none;color:inherit;">
+        <h1 style="font-family:'Rubik',sans-serif;font-weight:200;font-size:clamp(36px,6vw,64px);margin:0;line-height:1;letter-spacing:0.5px;">לירז אקסלרד</h1>
+      </a>
+      <span style="font-size:16px;color:oklch(0.55 0 0);line-height:1;">בלה בלה בלה</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:18px;padding-bottom:6px;">
+      <a href="#" style="text-decoration:none;color:oklch(0.55 0 0);font-size:14px;transition:color 0.2s ease;" style-hover="color:oklch(0.42 0.01 260);">הרשמה לעדכונים</a>
+      <a href="#" title="RSS" aria-label="RSS" style="display:flex;align-items:center;color:oklch(0.55 0 0);transition:color 0.2s ease;" style-hover="color:oklch(0.42 0.01 260);">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <circle cx="5" cy="19" r="2" fill="currentColor"/>
+          <path d="M4 11C10.0751 11 15 15.9249 15 22" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M4 4C13.3888 4 21 11.6112 21 21" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div style="flex:1;display:flex;{{rowDir}};align-items:stretch;padding:24px 6vw 60px;gap:48px;">
+    <nav style="{{navStyle}};display:flex;flex-direction:column;">
+      <sc-for list="{{items}}" as="it" hint-placeholder-count="6">
+        <a href="{{it.href}}" onClick="{{it.onClick}}" onMouseEnter="{{it.onEnter}}" onMouseLeave="{{it.onLeave}}" style="text-decoration:none;color:inherit;display:flex;align-items:baseline;gap:22px;padding:{{it.padding}};position:relative;">
+          <span style="{{it.circleStyle}}">{{it.num}}</span>
+          <span style="font-family:'Rubik',sans-serif;font-weight:200;font-size:{{it.fontSize}};transition:font-weight 0.15s ease;flex:1;" style-hover="font-weight:500;">{{it.label}}</span>
+        </a>
+      </sc-for>
+    </nav>
+
+    <sc-if value="{{showPreview}}" hint-placeholder-val="{{false}}">
+      <div style="flex:1;max-width:640px;display:flex;align-items:center;justify-content:center;">
+        <div style="{{previewStyle}}"></div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{active}}" hint-placeholder-val="{{false}}">
+      <div style="flex:1;background:oklch(0.96 0.003 260);border-radius:6px;padding:48px 44px;max-width:640px;">
+        <div style="font-size:13px;color:{{accent}};letter-spacing:0.5px;margin-bottom:16px;">{{active.eyebrow}}</div>
+        <h2 style="font-family:'Rubik',sans-serif;font-weight:500;font-size:28px;margin:0 0 20px;">{{active.title}}</h2>
+        <p style="font-size:16px;line-height:1.8;color:oklch(0.4 0 0);margin:0 0 24px;">{{active.body}}</p>
+        <a href="{{active.href}}" style="font-size:15px;font-weight:600;text-decoration:none;color:{{accent}};">{{active.cta}} ←</a>
+      </div>
+    </sc-if>
+  </div>
+
+  <dc-import name="Footer" dir="rtl" name-label="לירז אקסלרד" email="hello@lirazaxelrad.com" socials="{{socials}}" mirror-href="en.dc.html" mirror-label="English site" copyright-text="© 2026 לירז אקסלרד" hint-size="100%,160px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900},&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;oklch(0.42 0.01 260)&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;oklch(0.42 0.01 260)&quot;,&quot;oklch(0.45 0.12 25)&quot;,&quot;oklch(0.5 0.1 145)&quot;,&quot;oklch(0.45 0.13 260)&quot;]},&quot;grayscaleHover&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { activeKey: null, hoverKey: null };
+
+
+
+  select(key) {
+    return (e) => { e.preventDefault(); this.setState({ activeKey: key }); };
+  }
+
+  hoverEnter(key) {
+    return () => {
+      const gen = (this._revealGen || 0) + 1;
+      this._revealGen = gen;
+      clearTimeout(this._revealTimer);
+      this.setState({ hoverKey: key, revealPhase: 'gray' });
+      this._revealTimer = setTimeout(() => {
+        if (this._revealGen === gen) this.setState({ revealPhase: 'color' });
+      }, 40);
+    };
+  }
+
+  hoverLeave() {
+    return () => this.setState({ hoverKey: null });
+  }
+
+  renderVals() {
+    const accent = this.props.accentColor ?? 'oklch(0.42 0.01 260)';
+    const grayscaleHover = this.props.grayscaleHover ?? true;
+    const content = {
+      about: {eyebrow: 'אודות', title: 'קצת עליי', body: 'שנים ניהלתי מוצר בהייטק, ובמקביל תרגלתי ולימדתי מדיטציה. לפני שנתיים עברתי לברלין — מעבר שלימד אותי הרבה על להתחיל מחדש.', href: 'about.dc.html', cta: 'הסיפור המלא'},
+      blog: {eyebrow: 'מהכתיבה האחרונה · 28.07.2026', title: 'על הפער שבין התוכנית לבין החיים', body: 'תכננתי את המעבר לברלין במשך שנה. מה שלא תכננתי היה הרגע שבו הבנתי שאני צריך להניח לתוכנית וללמוד את העיר מחדש, ברגל, בלי מפה.', href: 'writing.dc.html', cta: 'כל הפוסטים'},
+      migration: {eyebrow: 'הגירה', title: 'ליווי וצמיחה', body: 'ליווי אישי סביב מעבר או שינוי משמעותי בחיים, וסיורי היכרות רגליים בברלין למי שרוצה לפגוש את העיר לא כתייר.', href: 'about.dc.html', cta: 'עוד על הליווי'},
+      meditation: {eyebrow: 'מדיטציה', title: 'MBSR ובודהיזם', body: 'ישיבה, נשימה, ותשומת לב — לא כתרגיל רוחני מרוחק אלא ככלי יומיומי. ליחידים ולקבוצות.', href: 'about.dc.html', cta: 'עוד על התרגול'},
+      pm: {eyebrow: 'ניהול מוצר', title: 'ליווי אישי', body: 'משיחות הכנה לראיונות ועד דילמות אמיתיות מהשטח — תעדוף, אינטרסנטים, החלטות בלי מספיק מידע.', href: 'about.dc.html', cta: 'עוד על הליווי'},
+      support: {eyebrow: 'תמיכה', title: 'צור קשר', body: 'מתלבטים לגבי ליווי, או סתם רוצים להגיד שלום — אשמח לשמוע.', href: 'contact.dc.html', cta: 'לטופס יצירת קשר'}
+    };
+
+    const labels = [
+      {key: 'about', label: 'אודות', href: 'about.dc.html'},
+      {key: 'blog', label: 'בלוג', href: 'writing.dc.html'},
+      {key: 'migration', label: 'הגירה', href: 'about.dc.html'},
+      {key: 'meditation', label: 'מדיטציה', href: 'about.dc.html'},
+      {key: 'pm', label: 'ניהול מוצר', href: 'about.dc.html'},
+      {key: 'support', label: 'תמיכה', href: 'contact.dc.html'}
+    ];
+
+    const isActive = !!this.state.activeKey;
+    const images = {
+      about: './assets/menu-thumb-about.png',
+      blog: './assets/menu-thumb-blog.jpg',
+      migration: './assets/menu-thumb-placeholder.png',
+      meditation: './assets/menu-thumb-meditation.png',
+      pm: './assets/menu-thumb-placeholder.png',
+      support: './assets/menu-thumb-support.jpg'
+    };
+    const hoverImg = this.state.hoverKey ? images[this.state.hoverKey] : images.about;
+
+    return {
+      items: labels.map((l, i) => {
+        const isHover = this.state.hoverKey === l.key;
+        return {
+          label: l.label,
+          href: l.href,
+          onClick: this.select(l.key),
+          onEnter: this.hoverEnter(l.key),
+          onLeave: this.hoverLeave(),
+          padding: isActive ? '14px 20px' : '20px 28px',
+          fontSize: isActive ? '22px' : '34px',
+          num: '0' + (i + 1),
+          circleStyle: `width:${isHover ? 54 : 32}px;height:${isHover ? 54 : 32}px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Rubik',sans-serif;font-weight:${isHover ? 500 : 300};font-size:${isHover ? 22 : 14}px;transition:all 0.3s ease;border:1px solid transparent;background:${isHover ? accent : 'transparent'};color:${isHover ? '#fff' : 'oklch(0.6 0 0)'};`
+        };
+      }),
+      accent,
+      socials: [{label: 'LinkedIn', href: '#'}, {label: 'Instagram', href: '#'}],
+      active: isActive ? content[this.state.activeKey] : false,
+      showPreview: !isActive,
+      previewStyle: (() => {
+        const shown = !isActive && this.state.hoverKey;
+        const gray = !grayscaleHover ? 0 : (shown && this.state.revealPhase === 'color' ? 0 : 1);
+        return `width:100%;aspect-ratio:1;background:url(${hoverImg}) center top/cover;opacity:${shown ? 1 : 0};filter:grayscale(${gray});transform:scale(${shown ? 1 : 0.6}) rotate(${shown ? 0 : -16}deg);transition:opacity 0.3s ease, filter 1.8s ease, transform 0.75s cubic-bezier(0.34,2.2,0.4,1);box-shadow:none;`;
+      })(),
+      navStyle: isActive ? 'width:260px;flex-shrink:0;' : (this.state.hoverKey ? 'width:340px;flex-shrink:0;transition:width 0.3s ease;' : 'width:100%;max-width:640px;transition:width 0.3s ease;'),
+      rowDir: 'flex-direction:row',
+      reset: (e) => { e.preventDefault(); this.setState({ activeKey: null }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

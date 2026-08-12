@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=David+Libre:wght@400;500;700&family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body{margin:0;background:oklch(0.985 0 0);}
+    a{color:oklch(0.42 0.01 260)} a:hover{color:oklch(0.3 0.01 260)}
+  </style>
+</helmet>
+<div dir="rtl" style="font-family:'Heebo',sans-serif;color:oklch(0.32 0 0);background:oklch(0.985 0 0);min-height:100%;">
+  <div style="padding:40px 6vw 0;">
+    <a href="index.dc.html" style="text-decoration:none;color:inherit;">
+      <h1 style="font-family:'Rubik',sans-serif;font-weight:200;font-size:clamp(36px,6vw,64px);margin:0;line-height:1;letter-spacing:0.5px;">לירז אקסלרד</h1>
+    </a>
+    <span style="font-size:16px;color:oklch(0.55 0 0);line-height:1;">בלה בלה בלה</span>
+  </div>
+
+  <section style="max-width:760px;margin:0 auto;padding:64px 6vw 30px;">
+    <h1 style="font-family:'David Libre',serif;font-weight:500;font-size:clamp(28px,3.5vw,38px);margin:0 0 12px;">כתיבה</h1>
+    <p style="font-size:16px;color:oklch(0.5 0 0);margin:0;">פוסט חדש בערך פעם בשבועיים. על מדיטציה, מוצר, ברלין, ומה שביניהם.</p>
+  </section>
+
+  <section style="max-width:760px;margin:0 auto;padding:20px 6vw 100px;">
+    <div style="display:flex;flex-direction:column;">
+      <sc-for list="{{posts}}" as="p" hint-placeholder-count="6">
+        <a href="writing-post.dc.html" style="display:flex;justify-content:space-between;gap:24px;padding:22px 0;border-bottom:1px solid oklch(0.9 0 0);text-decoration:none;color:inherit;" style-hover="color:oklch(0.42 0.01 260);">
+          <span style="font-size:18px;">{{p.title}}</span>
+          <span style="font-size:14px;color:oklch(0.55 0 0);white-space:nowrap;">{{p.date}}</span>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <dc-import name="Footer" dir="rtl" name-label="לירז אקסלרד" email="hello@lirazaxelrad.com" socials="{{socials}}" mirror-href="en.dc.html" mirror-label="English site" copyright-text="© 2026 לירז אקסלרד" hint-size="100%,160px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      navItems: [
+        {label: 'קצת עליי', href: 'about.dc.html'},
+        {label: 'כתיבה', href: 'writing.dc.html'},
+        {label: 'צור קשר', href: 'contact.dc.html'}
+      ],
+      posts: [
+        {title: 'על הפער שבין התוכנית לבין החיים', date: '28.07.2026'},
+        {title: 'למה ישבתי בשקט חצי שעה ולא קרה כלום', date: '14.07.2026'},
+        {title: 'מה לימד אותי ניהול מוצר על מדיטציה', date: '30.06.2026'},
+        {title: 'שנה לברלין: מה השתנה ומה לא', date: '16.06.2026'},
+        {title: 'הדרך הארוכה אל כרית המדיטציה', date: '02.06.2026'},
+        {title: 'שלוש שאלות שאני שואל לפני החלטת מוצר גדולה', date: '19.05.2026'}
+      ],
+      socials: [{label: 'LinkedIn', href: '#'}, {label: 'Instagram', href: '#'}]
+    };
+  }
+}
+</script>
+</body>
+</html>
