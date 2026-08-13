@@ -38,7 +38,7 @@ export const en: SiteContent = {
       body: p2,
       ctaLabel: "More on mentoring",
       href: "/en/about",
-      image: "/assets/menu-thumb-placeholder.png",
+      image: "/assets/menu-thumb-pm.jpg",
     },
     {
       key: "meditation",
@@ -58,7 +58,7 @@ export const en: SiteContent = {
       body: p4,
       ctaLabel: "More on this",
       href: "/en/about",
-      image: "/assets/menu-thumb-placeholder.png",
+      image: "/assets/menu-thumb-migration.jpg",
     },
     {
       key: "writing",

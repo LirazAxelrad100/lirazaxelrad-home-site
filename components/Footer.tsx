@@ -8,12 +8,12 @@ interface FooterProps {
 
 export function Footer({ nameLabel, footer, compact = false }: FooterProps) {
   return (
-    <footer className={`${compact ? "mt-6" : "mt-20"} border-t border-border font-heebo`}>
+    <footer className={`${compact ? "mt-4" : "mt-20"} border-t border-border font-heebo`}>
       <div
-        className={`mx-auto flex max-w-[1100px] flex-wrap items-center justify-between gap-6 px-[6vw] ${compact ? "pb-6 pt-6" : "pb-10 pt-12"}`}
+        className={`flex flex-wrap items-center justify-between gap-6 px-[6vw] ${compact ? "pb-6 pt-6" : "pb-10 pt-12"}`}
       >
         <div>
-          <div className="font-david-libre text-[18px] text-text-primary">{nameLabel}</div>
+          <div className="font-rubik text-[16px] text-text-primary">{nameLabel}</div>
           <a href={`mailto:${footer.email}`} className="text-[14px] text-text-muted no-underline">
             {footer.email}
           </a>

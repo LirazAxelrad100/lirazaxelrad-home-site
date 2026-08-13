@@ -36,8 +36,8 @@ export function HomeMenu({ content }: HomeMenuProps) {
         onNameClick={() => setActiveKey(null)}
       />
 
-      <div className="flex flex-col items-stretch gap-6 px-[6vw] pb-0 pt-2 md:flex-row">
-        <nav className={`flex flex-shrink-0 flex-col transition-[width] duration-300 ${navWidthClass}`}>
+      <div className="flex flex-col items-stretch gap-6 px-[6vw] pb-0 pt-4 md:flex-row md:min-h-[456px]">
+        <nav className={`flex flex-shrink-0 flex-col justify-center transition-[width] duration-300 ${navWidthClass}`}>
           {content.menu.map((item, i) => {
             const isHover = hoverKey === item.key;
             const circleSize = isHover ? 40 : 26;
