@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import WritingPostContent from "../../../components/pages/WritingPostContent.astro";
+import { en } from "../../../data/site.en";
+
+export function getStaticPaths() {
+  return en.writing.posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+---
+
+<BaseLayout
+  site={en}
+  title={`${post.title} — ${en.name}`}
+  description={en.description}
+  alternateHref={`/writing/${post.slug}`}
+>
+  <WritingPostContent site={en} post={post} writingBasePath="/en/writing" />
+</BaseLayout>

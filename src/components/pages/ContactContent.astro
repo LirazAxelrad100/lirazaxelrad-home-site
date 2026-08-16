@@ -1,0 +1,24 @@
+---
+import { ContactForm } from "../ContactForm";
+import type { SiteData } from "../../data/types";
+
+interface Props {
+  site: SiteData;
+}
+
+const { contact, footer } = Astro.props.site;
+---
+
+<section class="mx-auto max-w-[640px] px-[6vw] pb-24 pt-16">
+  <h1 class="m-0 mb-3.5 font-david-libre text-[clamp(28px,3.5vw,38px)] font-medium">{contact.title}</h1>
+  <p class="m-0 mb-10 text-[16px] leading-[1.7] text-text-muted">{contact.intro}</p>
+
+  <ContactForm client:load labels={contact.formLabels} />
+
+  <div class="mt-14 flex flex-wrap gap-7 border-t border-border pt-8">
+    <a href={`mailto:${contact.directEmailLabel}`} class="text-[15px] no-underline">{contact.directEmailLabel}</a>
+    {footer.socials.map((s) => (
+      <a href={s.href} class="text-[15px] no-underline">{s.label}</a>
+    ))}
+  </div>
+</section>

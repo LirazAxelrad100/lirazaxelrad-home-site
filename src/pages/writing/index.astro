@@ -1,0 +1,9 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import WritingListContent from "../../components/pages/WritingListContent.astro";
+import { he } from "../../data/site.he";
+---
+
+<BaseLayout site={he} title={`${he.writing.title} — ${he.name}`} description={he.description} alternateHref="/en/writing">
+  <WritingListContent site={he} writingBasePath="/writing" />
+</BaseLayout>

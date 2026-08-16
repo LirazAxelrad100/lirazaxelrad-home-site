@@ -1,35 +1,45 @@
-@AGENTS.md
-
 # Project: Liraz Axelrad personal site
 
 ## What it is
-Personal site for Liraz Axelrad — product management + meditation + migration/life-transitions mentor. Next.js (App Router) + TypeScript + Tailwind CSS. Two independent language versions, not translations of each other:
+Personal site for Liraz Axelrad — product management + meditation + migration/life-transitions mentor. Astro + TypeScript + Tailwind CSS. Two independent language versions, not translations of each other:
 - Hebrew (RTL) at `/` — primary/default language.
 - English (LTR) at `/en`.
 
-Both use the same menu-driven interactive homepage (hover reveals a photo, click opens an info panel — no navigation) built in `components/HomeMenu.tsx`, driven by per-locale content in `content/he.ts` / `content/en.ts` (shape defined in `content/types.ts`). Original high-fidelity design prototype (static `.dc.html` files + handoff README) is preserved in `design/` for reference.
+Both use the same menu-driven interactive homepage (click a menu item to open an inline info panel — no page navigation) built in `src/components/HomeMenu.tsx`, mounted as the site's only large client island (`client:load`) on `src/pages/index.astro` / `src/pages/en/index.astro`. Everything else on the site is static HTML with zero shipped JS, except the small `ContactForm.tsx` island on the Contact page.
+
+Menu items live as Astro content collections — one Markdown file per item per locale (`src/content/menu/he/*.md`, `src/content/menu/en/*.md`), schema in `src/content.config.ts`. Adding/removing/reordering a menu item is adding/deleting a file or changing its `order` frontmatter number — no code editing required. All other copy (name/tagline, About, Writing posts, Contact labels, footer) lives in `src/data/site.he.ts` / `site.en.ts` (shape in `src/data/types.ts`).
+
+Original high-fidelity design prototype (static `.dc.html` files + handoff README) is preserved in `design/` for reference.
 
 Repo: https://github.com/LirazAxelrad100/lirazaxelrad-home-site
 
-## Status: working v1, pushed to GitHub, not yet deployed
-- Homepage (both locales), About, Writing (list + post), Contact all built and verified in-browser.
-- Contact form posts to `app/api/contact/route.ts`, sends via Resend — **not yet functional** until `RESEND_API_KEY` is set (see `.env.example`); until then it fails gracefully with an error message.
-- SEO basics in place: per-page metadata, `sitemap.ts`, `robots.ts`, hreflang alternates.
+## Status: migrated to Astro, not yet deployed
+- Migrated from Next.js to Astro on 2026-08-16 — same visual design and behavior, rebuilt for a lighter/faster static site and easier content editing (Liraz hadn't finished writing real content yet, so this was the cheapest point to switch). See "Key decisions" below for what changed structurally.
+- Homepage (both locales), About, Writing (list + post), Contact all built; needs a fresh in-browser verification pass after the framework swap (was last verified working under Next.js).
+- Contact form posts to `src/pages/api/contact.ts` (the one on-demand/server route on an otherwise fully static site), sends via Resend — **not yet functional** until `RESEND_API_KEY` is set (see `.env.example`); until then it fails gracefully with an error message.
+- SEO basics in place: per-page `<title>`/description, `src/pages/sitemap.xml.ts`, `public/robots.txt`, hreflang alternates.
 - All body copy is placeholder Lorem Ipsum on purpose — Liraz will supply real Hebrew and English copy later (per page, per locale). Short structural labels (menu items, buttons, form field labels) are already real, not placeholder.
 
 ## Key decisions
 - **Claude writes the code; Liraz reviews/tests in browser and handles all git commands herself** (add/commit/push) — for her portfolio, and her stated preference for this project.
-- **Not a translation-key i18n setup.** Each locale has its own independent content object (menu order, item count, copy can all differ). Chosen over next-intl/dictionaries because Liraz explicitly wants different menu order/content per language, not structural parity.
-- **Routing:** Next.js "multiple root layouts" pattern — `app/(he)/` is a route group (no URL segment, so Hebrew sits at bare `/`) with its own root layout (`<html lang="he" dir="rtl">`); `app/en/` is a real folder (adds `/en` prefix) with its own root layout (`<html lang="en" dir="ltr">`). No top-level `app/layout.tsx` — each locale is genuinely root.
-- **Homepage-only compact spacing:** `Header` and `Footer` both take an optional `compact` prop, used only when rendered from `HomeMenu` (the homepage). This exists because Liraz found the homepage specifically felt oversized/required scrolling, while About/Writing/Contact felt fine as-is — so sizing was tuned per-surface, not globally. Don't collapse this back into one shared size.
-- **Homepage layout: no `flex-1` stretch on the menu/image row.** It was removed deliberately — `min-h-screen` + `flex-1` on that row was stretching to fill the viewport, which created a large empty gap above the footer once the menu became more compact. Don't re-add it without checking the footer gap again.
-- Subscribe link was removed entirely (not wanted). RSS icon lives in the footer only (moved from header), positioned right of LinkedIn in Hebrew — which mirrors to LinkedIn's *left* in English, since footer social links use direction-aware (`dir`) start/end positioning, not a fixed side. This mirroring is intentional, not a bug.
+- **Astro over Next.js**, decided 2026-08-16. Reasoning: the site is ~95% static content with one interactive homepage menu and a contact form — Astro ships zero JS by default and only hydrates those two pieces ("islands"), instead of shipping a full React runtime for a page that doesn't need it. It also lets menu items live as individual Markdown files (content collections) instead of entries in a TypeScript array, which is easier for Liraz (non-developer) to add/edit/remove herself.
+- **Not a translation-key i18n setup**, still true post-migration. Each locale has its own independent content (menu order, item count, copy can all differ). Not using Astro's built-in i18n routing, which assumes translated parity — instead, plain duplicate route trees per locale, same approach as before.
+- **Routing:** Hebrew pages live at `src/pages/*.astro` (site root); English pages live at `src/pages/en/*.astro` (adds `/en` prefix) — direct analog of the old Next.js route-group setup, just as separate files rather than a route-group folder trick.
+- **Rendering:** `output: "static"` — every page is prerendered at build time except `src/pages/api/contact.ts`, which opts out via `export const prerender = false` and runs as an on-demand serverless function (Vercel adapter) only when the contact form is submitted.
+- **Fonts:** self-hosted via Fontsource packages (`@fontsource-variable/rubik`, `@fontsource/david-libre`, `@fontsource-variable/heebo`) instead of `next/font/google` — same fonts, no Next-specific API.
+- **Homepage-only compact spacing:** `Footer` takes an optional `compact` prop, used only on the homepage. `Header` is not a shared component on the homepage anymore — its markup lives inline inside the `HomeMenu` island (needed for the "click name to reset the open panel" interaction), while content pages use the static `Header.astro`. This exists because Liraz found the homepage specifically felt oversized/required scrolling, while About/Writing/Contact felt fine as-is — so sizing was tuned per-surface, not globally. Don't collapse this back into one shared size.
+- **Homepage layout: no `flex-1` stretch on the menu/image row.** Deliberately absent — `min-h-screen` + `flex-1` on that row previously stretched to fill the viewport, creating a large empty gap above the footer once the menu became more compact. Don't re-add it without checking the footer gap again.
+- **Hover-image reveal was never built and stays out of scope.** The original design intent (grayscale→color image reveal on menu hover, documented in `design/README.md`) was never implemented in the Next.js version either — the `image` field was carried in the data but unused. Dropped from the new content schema entirely rather than porting a dead field. Revisit only if explicitly requested.
+- **Contact is not a homepage menu item.** Decided 2026-08-16: a numbered menu panel was too much weight for a contact form. Contact is reachable via a plain link in the footer (`footer.contactLabel`/`footer.contactHref` in the site data) plus the existing `mailto:` link; the `/contact` page and form still work exactly as before.
+- **"Berlin, Berlin!" is a real, intentional menu item** (not a mistake) — it replaced what used to be the "Writing" menu entry in both locales, keeping that item's original panel copy/link/CTA, just relabeled. (While porting, found the Hebrew content file had accidentally applied this label to the *Contact* item instead of the *Writing* item — fixed during migration so both locales consistently apply it to Writing.)
+- Subscribe link was removed entirely (not wanted). RSS icon lives in the footer only, positioned direction-aware (`dir`) via start/end, not a fixed side — intentional mirroring between locales, not a bug.
 - Node.js wasn't installed on this machine — installed via nvm (`~/.nvm`, default alias is v24.19.0). If commands like `npm`/`node` aren't found in a fresh shell, `nvm`'s init lines are in `~/.zshrc`.
 
 ## What's next
+- Verify the migrated site in-browser (dev server + click-through) before Liraz reviews/pushes.
 - Liraz to create a free Resend account and provide the API key to enable real contact-form email delivery.
-- Deploy to Vercel, connected to the GitHub repo.
+- Deploy to Vercel, connected to the GitHub repo (Vercel adapter already configured in `astro.config.mjs`).
 - Point `lirazaxelrad.com` at Vercel (currently on WordPress; domain was registered through WordPress.com but is Liraz's own and portable).
-- Liraz to supply real Hebrew + English copy (Markdown) per page to replace placeholder text.
+- Liraz to supply real Hebrew + English copy per page to replace placeholder text — menu item copy can now be edited directly in `src/content/menu/{he,en}/*.md`.
 - Decide whether "הגירה/Migration" and "ניהול מוצר/Product Management" get their own dedicated pages (currently their panel CTAs link to the About page as a stand-in, matching the original design's intent).
-- Blog/Writing section is in for now but Liraz was still undecided on keeping it long-term.
+- Blog/Writing section: still undecided (unchanged by this migration). Liraz is leaning toward moving Hebrew writing to Substack (easier discovery for readers) and having the Hebrew site's "Writing" section become just a short blurb + link out, instead of a full post-list-and-post-page. Not decided for English — she has far fewer English posts, and doesn't want one Substack mixing Hebrew and English. Until decided, don't invest further in the Writing feature (it deliberately stayed as plain data in `site.he.ts`/`site.en.ts` rather than becoming a content collection, since its whole architecture may be replaced by an external link soon).

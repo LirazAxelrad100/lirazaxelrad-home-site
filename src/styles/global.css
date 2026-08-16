@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@import "@fontsource-variable/rubik";
+@import "@fontsource/david-libre/400.css";
+@import "@fontsource/david-libre/500.css";
+@import "@fontsource/david-libre/700.css";
+@import "@fontsource-variable/heebo";
+
+:root {
+  --color-bg: oklch(0.985 0 0);
+  --color-text-primary: oklch(0.32 0 0);
+  --color-text-body: oklch(0.4 0 0);
+  --color-text-body-soft: oklch(0.45 0 0);
+  --color-text-muted: oklch(0.5 0 0);
+  --color-text-muted-soft: oklch(0.55 0 0);
+  --color-text-faint: oklch(0.65 0 0);
+  --color-accent: oklch(0.42 0.01 260);
+  --color-accent-hover: oklch(0.3 0.01 260);
+  --color-panel: oklch(0.96 0.003 260);
+  --color-border: oklch(0.9 0 0);
+
+  --font-rubik: "Rubik Variable", sans-serif;
+  --font-david-libre: "David Libre", serif;
+  --font-heebo: "Heebo Variable", sans-serif;
+}
+
+@theme inline {
+  --color-bg: var(--color-bg);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-body: var(--color-text-body);
+  --color-text-body-soft: var(--color-text-body-soft);
+  --color-text-muted: var(--color-text-muted);
+  --color-text-muted-soft: var(--color-text-muted-soft);
+  --color-text-faint: var(--color-text-faint);
+  --color-accent: var(--color-accent);
+  --color-accent-hover: var(--color-accent-hover);
+  --color-panel: var(--color-panel);
+  --color-border: var(--color-border);
+  --font-rubik: var(--font-rubik);
+  --font-david-libre: var(--font-david-libre);
+  --font-heebo: var(--font-heebo);
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+}
+a {
+  color: var(--color-accent);
+}
+a:hover {
+  color: var(--color-accent-hover);
+}

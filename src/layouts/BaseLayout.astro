@@ -1,0 +1,25 @@
+---
+import HtmlShell from "./HtmlShell.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import type { SiteData } from "../data/types";
+
+interface Props {
+  site: SiteData;
+  title: string;
+  description: string;
+  alternateHref: string;
+}
+
+const { site, title, description, alternateHref } = Astro.props;
+---
+
+<HtmlShell lang={site.locale} dir={site.dir} title={title} description={description} alternateHref={alternateHref}>
+  <div class="flex min-h-screen flex-col font-heebo">
+    <Header name={site.name} tagline={site.tagline} homeHref={site.homeHref} />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer nameLabel={site.name} footer={site.footer} />
+  </div>
+</HtmlShell>

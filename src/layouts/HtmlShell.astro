@@ -1,0 +1,33 @@
+---
+import "../styles/global.css";
+import type { Direction, Locale } from "../data/types";
+
+interface Props {
+  lang: Locale;
+  dir: Direction;
+  title: string;
+  description: string;
+  alternateHref: string;
+}
+
+const { lang, dir, title, description, alternateHref } = Astro.props;
+const alternateLang: Locale = lang === "he" ? "en" : "he";
+const canonicalHref = new URL(Astro.url.pathname, Astro.site);
+const alternateUrl = new URL(alternateHref, Astro.site);
+---
+
+<html lang={lang} dir={dir} class="h-full">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalHref} />
+    <link rel="alternate" hreflang={lang} href={canonicalHref} />
+    <link rel="alternate" hreflang={alternateLang} href={alternateUrl} />
+    <link rel="icon" href="/favicon.ico" />
+  </head>
+  <body class="min-h-full antialiased">
+    <slot />
+  </body>
+</html>

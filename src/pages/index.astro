@@ -1,0 +1,28 @@
+---
+import { getCollection } from "astro:content";
+import HtmlShell from "../layouts/HtmlShell.astro";
+import { HomeMenu } from "../components/HomeMenu";
+import Footer from "../components/Footer.astro";
+import { he } from "../data/site.he";
+import type { MenuItem } from "../data/types";
+
+const entries = await getCollection("menuHe");
+const items: MenuItem[] = entries
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((entry) => ({
+    key: entry.id,
+    label: entry.data.label,
+    eyebrow: entry.data.eyebrow,
+    title: entry.data.title,
+    ctaLabel: entry.data.ctaLabel,
+    href: entry.data.href,
+    body: (entry.body ?? "").trim(),
+  }));
+---
+
+<HtmlShell lang={he.locale} dir={he.dir} title={he.name} description={he.description} alternateHref="/en">
+  <div class="flex h-screen flex-col">
+    <HomeMenu client:load name={he.name} tagline={he.tagline} homeHref={he.homeHref} dir={he.dir} items={items} />
+    <Footer nameLabel={he.name} footer={he.footer} compact />
+  </div>
+</HtmlShell>

@@ -1,12 +1,10 @@
 # dependencies
 /node_modules
 
-# next.js
-/.next/
-/out/
-
-# production
-/build
+# astro / build output
+/dist/
+/.astro/
+/.vercel/
 
 # misc
 .DS_Store
@@ -23,7 +21,6 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
 
 # local dev helper
 dev-server.sh

@@ -1,0 +1,9 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContactContent from "../../components/pages/ContactContent.astro";
+import { en } from "../../data/site.en";
+---
+
+<BaseLayout site={en} title={`${en.contact.title} — ${en.name}`} description={en.description} alternateHref="/contact">
+  <ContactContent site={en} />
+</BaseLayout>
