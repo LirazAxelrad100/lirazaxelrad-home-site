@@ -1,0 +1,29 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import MenuItemContent from "../../components/pages/MenuItemContent.astro";
+import { en } from "../../data/site.en";
+import { splitParagraphs } from "../../lib/menu";
+
+const SHARED_IDS = ["about", "pm", "meditation", "berlin"];
+
+export async function getStaticPaths() {
+  const entries = await getCollection("menuEn");
+  return entries
+    .filter((entry) => entry.id !== "writing")
+    .map((entry) => ({ params: { item: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const paragraphs = splitParagraphs(entry.body ?? "");
+const alternateHref = SHARED_IDS.includes(entry.id) ? `/${entry.id}` : "/";
+---
+
+<BaseLayout
+  site={en}
+  title={`${entry.data.title} — ${en.name}`}
+  description={en.description}
+  alternateHref={alternateHref}
+>
+  <MenuItemContent title={entry.data.title} paragraphs={paragraphs} />
+</BaseLayout>

@@ -1,15 +1,6 @@
 export type Locale = "he" | "en";
 export type Direction = "rtl" | "ltr";
 
-export interface AboutPageContent {
-  title: string;
-  intro: string[];
-  whatIDoTitle: string;
-  whatIDoItems: { title: string; body: string }[];
-  ctaLabel: string;
-  ctaHref: string;
-}
-
 export interface WritingPost {
   slug: string;
   title: string;
@@ -70,7 +61,6 @@ export interface SiteData {
   tagline: string;
   description: string;
   homeHref: string;
-  about: AboutPageContent;
   writing: WritingListContent;
   contact: ContactPageContent;
   footer: FooterContent;

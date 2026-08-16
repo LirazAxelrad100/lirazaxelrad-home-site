@@ -1,0 +1,15 @@
+---
+interface Props {
+  title: string;
+  paragraphs: string[];
+}
+
+const { title, paragraphs } = Astro.props;
+---
+
+<section class="mx-auto max-w-[640px] px-[6vw] pb-24 pt-16">
+  <h1 class="m-0 mb-5 font-david-libre text-[clamp(28px,3.5vw,38px)] font-medium">{title}</h1>
+  {paragraphs.map((paragraph) => (
+    <p class="m-0 mb-[18px] text-[17px] leading-[1.85] text-text-body last:mb-0">{paragraph}</p>
+  ))}
+</section>

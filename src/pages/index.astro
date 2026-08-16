@@ -5,6 +5,7 @@ import { HomeMenu } from "../components/HomeMenu";
 import Footer from "../components/Footer.astro";
 import { he } from "../data/site.he";
 import type { MenuItem } from "../data/types";
+import { firstParagraph } from "../lib/menu";
 
 const entries = await getCollection("menuHe");
 const items: MenuItem[] = entries
@@ -16,7 +17,7 @@ const items: MenuItem[] = entries
     title: entry.data.title,
     ctaLabel: entry.data.ctaLabel,
     href: entry.data.href,
-    body: (entry.body ?? "").trim(),
+    body: firstParagraph(entry.body ?? ""),
   }));
 ---
 

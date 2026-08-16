@@ -20,18 +20,6 @@ export const he: SiteData = {
   tagline: "Lorem ipsum dolor sit amet",
   description: "לירז אקסלרד — ניהול מוצר, מדיטציה וחיים בברלין",
   homeHref: "/",
-  about: {
-    title: "קצת עליי",
-    intro: [p1, p2, p3],
-    whatIDoTitle: "מה שאני עושה",
-    whatIDoItems: [
-      { title: "מדיטציה — MBSR ובודהיזם", body: p4 },
-      { title: "ליווי בניהול מוצר", body: p1 },
-      { title: "ליווי וצמיחה", body: p2 },
-    ],
-    ctaLabel: "רוצים לדבר? צרו קשר",
-    ctaHref: "/contact",
-  },
   writing: {
     title: "כתיבה",
     subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",

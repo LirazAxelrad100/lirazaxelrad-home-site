@@ -19,18 +19,6 @@ export const en: SiteData = {
   tagline: "Lorem ipsum dolor sit amet",
   description: "Liraz Axelrad — product management, meditation, and life in Berlin",
   homeHref: "/en",
-  about: {
-    title: "A bit about me",
-    intro: [p1, p2, p3],
-    whatIDoTitle: "What I do",
-    whatIDoItems: [
-      { title: "Product Management Mentoring", body: p4 },
-      { title: "Meditation — MBSR & Buddhism", body: p1 },
-      { title: "Support & Growth", body: p2 },
-    ],
-    ctaLabel: "Want to talk? Get in touch",
-    ctaHref: "/en/contact",
-  },
   writing: {
     title: "Writing",
     subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",

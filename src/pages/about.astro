@@ -1,9 +1,0 @@
----
-import BaseLayout from "../layouts/BaseLayout.astro";
-import AboutContent from "../components/pages/AboutContent.astro";
-import { he } from "../data/site.he";
----
-
-<BaseLayout site={he} title={`${he.about.title} — ${he.name}`} description={he.description} alternateHref="/en/about">
-  <AboutContent site={he} />
-</BaseLayout>
