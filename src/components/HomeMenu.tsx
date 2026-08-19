@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { marked } from "marked";
 import type { Direction, MenuItem } from "../data/types";
 
 interface HomeMenuProps {
@@ -29,7 +30,7 @@ export function HomeMenu({ name, tagline, homeHref, dir, items }: HomeMenuProps)
               e.preventDefault();
               setActiveKey(null);
             }}
-            className="text-inherit no-underline"
+            className="text-accent no-underline"
           >
             <h1 className="m-0 font-rubik text-[clamp(36px,6vw,64px)] font-extralight leading-none tracking-[0.5px]">
               {name}
@@ -84,10 +85,13 @@ export function HomeMenu({ name, tagline, homeHref, dir, items }: HomeMenuProps)
         </nav>
 
         {isActive && active && (
-          <div className="flex-1 rounded-md bg-panel p-9 md:max-w-[560px]">
+          <div className="flex-1 self-center rounded-md bg-panel p-9 md:max-w-[680px]">
             <div className="mb-3.5 text-[13px] tracking-[0.5px] text-accent">{active.eyebrow}</div>
             <h2 className="m-0 mb-4 font-rubik text-[22px] font-medium">{active.title}</h2>
-            <p className="m-0 mb-6 text-[16px] leading-[1.7] text-text-body">{active.body}</p>
+            <p
+              className="m-0 mb-6 text-[16px] leading-[1.7] text-text-body [&_a]:text-accent [&_a]:underline [&_a]:underline-offset-2 [&_a:hover]:opacity-80 [&_strong]:font-semibold"
+              dangerouslySetInnerHTML={{ __html: marked.parseInline(active.body) as string }}
+            />
             <a href={active.href} className="text-[15px] font-semibold text-accent no-underline">
               {active.ctaLabel} {arrow}
             </a>

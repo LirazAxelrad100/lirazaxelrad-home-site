@@ -5,7 +5,7 @@ import type { SiteData } from "./types";
 // field labels, buttons) are real so the UI itself is testable.
 
 const p1 =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.";
+  "בכל נושא, באמת, מוזמנים ליצור איתי קשר. גם בשביל סתם לקשקש.";
 const p2 =
   "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.";
 const p3 =
@@ -46,7 +46,7 @@ export const he: SiteData = {
     ],
   },
   contact: {
-    title: "צור קשר",
+    title: "צרו קשר",
     intro: p1,
     formLabels: {
       name: "שם",
@@ -54,7 +54,7 @@ export const he: SiteData = {
       email: "אימייל",
       emailPlaceholder: "you@example.com",
       topic: "מה מעניין אותך?",
-      topicOptions: ["מדיטציה", "ליווי בניהול מוצר", "ליווי וצמיחה / ברלין", "משהו אחר"],
+      topicOptions: ["מדיטציה", "ניהול מוצר", "!ברלין, ברלין", "הגירה"],
       message: "הודעה",
       messagePlaceholder: "ספרו לי קצת...",
       submit: "שליחה",
@@ -68,8 +68,10 @@ export const he: SiteData = {
     contactLabel: "צור קשר",
     contactHref: "/contact",
     socials: [
-      { label: "LinkedIn", href: "#" },
-      { label: "Instagram", href: "#" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/lirazaxelrad/" },
+      { label: "Instagram", href: "https://www.instagram.com/lirazax/" },
+      { label: "Facebook", href: "https://www.facebook.com/liraz.axelrad" },
+      { label: "Substack", href: "https://lirazaxelrad.substack.com/" },
     ],
     mirrorHref: "/en",
     mirrorLabel: "English site",

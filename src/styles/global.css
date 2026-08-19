@@ -7,16 +7,16 @@
 @import "@fontsource-variable/heebo";
 
 :root {
-  --color-bg: oklch(0.985 0 0);
+  --color-bg: #fffbeb;
   --color-text-primary: oklch(0.32 0 0);
   --color-text-body: oklch(0.4 0 0);
   --color-text-body-soft: oklch(0.45 0 0);
   --color-text-muted: oklch(0.5 0 0);
   --color-text-muted-soft: oklch(0.55 0 0);
   --color-text-faint: oklch(0.65 0 0);
-  --color-accent: oklch(0.42 0.01 260);
+  --color-accent: #bb4d00;
   --color-accent-hover: oklch(0.3 0.01 260);
-  --color-panel: oklch(0.96 0.003 260);
+  --color-panel: #fef3c7;
   --color-border: oklch(0.9 0 0);
 
   --font-rubik: "Rubik Variable", sans-serif;
@@ -45,9 +45,11 @@ body {
   background: var(--color-bg);
   color: var(--color-text-primary);
 }
-a {
-  color: var(--color-accent);
-}
-a:hover {
-  color: var(--color-accent-hover);
+@layer base {
+  a {
+    color: var(--color-accent);
+  }
+  a:hover {
+    color: var(--color-accent-hover);
+  }
 }

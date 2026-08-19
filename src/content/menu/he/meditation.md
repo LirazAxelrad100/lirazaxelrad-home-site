@@ -1,5 +1,5 @@
 ---
-order: 4
+order: 3
 label: "מדיטציה, בודהיזם, MBSR"
 eyebrow: "מדיטציה"
 title: "MBSR ובודהיזם"
