@@ -4,9 +4,10 @@ import { marked } from "marked";
 interface Props {
   title: string;
   paragraphs: string[];
+  image?: string;
 }
 
-const { title, paragraphs } = Astro.props;
+const { title, paragraphs, image } = Astro.props;
 ---
 
 <div class="flex flex-1 flex-col items-stretch gap-6 px-[6vw] pb-24 pt-4 md:flex-row">
@@ -16,5 +17,12 @@ const { title, paragraphs } = Astro.props;
   >
     <h1 class="m-0 mb-5 font-rubik text-[clamp(28px,3.5vw,38px)] font-medium">{title}</h1>
     {paragraphs.map((paragraph) => <Fragment set:html={marked.parse(paragraph)} />)}
+    {image && (
+      <img
+        src={image}
+        alt={title}
+        class="mx-auto mt-9 block h-64 w-64 rounded-full object-cover"
+      />
+    )}
   </section>
 </div>

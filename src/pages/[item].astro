@@ -23,5 +23,5 @@ const alternateHref = SHARED_IDS.includes(entry.id) ? `/en/${entry.id}` : "/en";
   description={he.description}
   alternateHref={alternateHref}
 >
-  <MenuItemContent title={entry.data.title} paragraphs={paragraphs} />
+  <MenuItemContent title={entry.data.title} paragraphs={paragraphs} image={entry.data.image} />
 </BaseLayout>

@@ -8,6 +8,7 @@ const menuSchema = z.object({
   title: z.string(),
   ctaLabel: z.string(),
   href: z.string(),
+  image: z.string().optional(),
 });
 
 export const collections = {

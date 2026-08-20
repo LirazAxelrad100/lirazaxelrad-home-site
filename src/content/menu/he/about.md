@@ -5,8 +5,17 @@ eyebrow: "אודות"
 title: "קצת עליי"
 ctaLabel: "הסיפור המלא"
 href: "/about"
+image: "/assets/about-liraz.jpeg"
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+שלום, אני לירז, שמחה שהגעתם לכאן. 
+מכל המבוכות שקשורות בבניית אתר לעצמי, החלק הזה של ״מי אני?״ הוא המביך מכולם. וזה לא טריוויאלי. מה גם שכל האתר הזה מספר עלי. על דברים שאני אוהבת ודברים שאני עושה והצעות שאני מציעה. כלומר בדרכו הקצת מניפולטיבית האתר מספר סיפורים שונים עלי. מציג היבטים שונים. אז מה אני אעשה בחלק הזה, מה אכתוב?
 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.
+**קצת פרטים יבשים**
+
+לירז, בת 57, חיה בברלין. יש לי בלוג ב [Substack](https://substack.com/@lirazaxelrad). שם כתוב עלי:
+מתרגלת. כותבת. קוראת. מקשיבה. מבשלת. אופה. משוחחת. חיה בברלין. הולכת בעיר. מגדלת ירוקות ופרחים בגינות רחוב. מתרגלת עוד. וכותבת על כל זה. 
+ויש תמונות פרופיל. אותה תמונה כמו פה. 
+וזה הכול נכון והכול לא נכון. 
+
+מוזמנים ומוזמנות בחום לגלות יותר דרך האתר הזה. בכל עמוד שלו יש היבט אחר שלי. אפשר גםדרך הדברים שאני כותבת, או דרך לינקאדין שמפרט את הקריירה המקצועית שלי. או דרך יצירת קשר איתי, הכי פשוט.  
