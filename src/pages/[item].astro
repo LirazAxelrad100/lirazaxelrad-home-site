@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import MenuItemContent from "../components/pages/MenuItemContent.astro";
 import { he } from "../data/site.he";
-import { splitParagraphs } from "../lib/menu";
+import { buildMenuItems, splitParagraphs } from "../lib/menu";
 
 const SHARED_IDS = ["about", "pm", "meditation", "berlin"];
 
@@ -14,6 +14,7 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const paragraphs = splitParagraphs(entry.body ?? "");
+const items = buildMenuItems(await getCollection("menuHe"));
 const alternateHref = SHARED_IDS.includes(entry.id) ? `/en/${entry.id}` : "/en";
 ---
 
@@ -23,5 +24,11 @@ const alternateHref = SHARED_IDS.includes(entry.id) ? `/en/${entry.id}` : "/en";
   description={he.description}
   alternateHref={alternateHref}
 >
-  <MenuItemContent title={entry.data.title} paragraphs={paragraphs} image={entry.data.image} />
+  <MenuItemContent
+    title={entry.data.title}
+    paragraphs={paragraphs}
+    image={entry.data.image}
+    items={items}
+    currentKey={entry.id}
+  />
 </BaseLayout>

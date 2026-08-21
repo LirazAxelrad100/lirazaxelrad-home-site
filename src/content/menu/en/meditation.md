@@ -1,8 +1,8 @@
 ---
 order: 3
 label: "Meditation, Buddhism, MBSR"
-eyebrow: "Practice"
-title: "Meditation, Buddhism, MBSR"
+eyebrow: "Meditation, Buddhism, MBSR"
+title: "Practicing Meditation Together"
 ctaLabel: "More on practicing"
 href: "/en/meditation"
 ---

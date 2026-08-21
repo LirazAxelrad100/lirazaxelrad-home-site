@@ -1,9 +1,9 @@
 ---
 order: 4
 label: "הגירה, מעבר, שינוי "
-eyebrow: "הגירה"
-title: "ליווי וצמיחה"
-ctaLabel: "עוד על הליווי"
+eyebrow: "הגירה, מעבר, שינוי"
+title: "הגירה זה מסובך"
+ctaLabel: "עוד על הגירהי"
 href: "/migration"
 ---
 

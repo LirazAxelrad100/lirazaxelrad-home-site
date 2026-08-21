@@ -17,7 +17,7 @@ export const he: SiteData = {
   locale: "he",
   dir: "rtl",
   name: "לירז אקסלרד",
-  tagline: "Lorem ipsum dolor sit amet",
+  tagline: "ניהול מוצר, מדיטציה, הגירה: ליווי ותמיכה",
   description: "לירז אקסלרד — ניהול מוצר, מדיטציה וחיים בברלין",
   homeHref: "/",
   writing: {

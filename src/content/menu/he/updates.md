@@ -1,10 +1,10 @@
 ---
-order: 5
-label: "ברלין, ברלין!"
-eyebrow: "ברלין, ברלין!"
-title: "בואו נשוטט ביחד"
-ctaLabel: "עוד על שוטטות"
-href: "/berlin"
+order: 6
+label: "חדשות ועדכונים"
+eyebrow: "חדשות ועדכונים"
+title: "מה חדש?"
+ctaLabel: "המשך"
+href: "/updates"
 ---
 
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.

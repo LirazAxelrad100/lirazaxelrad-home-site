@@ -4,21 +4,10 @@ import HtmlShell from "../layouts/HtmlShell.astro";
 import { HomeMenu } from "../components/HomeMenu";
 import Footer from "../components/Footer.astro";
 import { he } from "../data/site.he";
-import type { MenuItem } from "../data/types";
-import { firstParagraph } from "../lib/menu";
+import { buildMenuItems } from "../lib/menu";
 
 const entries = await getCollection("menuHe");
-const items: MenuItem[] = entries
-  .sort((a, b) => a.data.order - b.data.order)
-  .map((entry) => ({
-    key: entry.id,
-    label: entry.data.label,
-    eyebrow: entry.data.eyebrow,
-    title: entry.data.title,
-    ctaLabel: entry.data.ctaLabel,
-    href: entry.data.href,
-    body: firstParagraph(entry.body ?? ""),
-  }));
+const items = buildMenuItems(entries);
 ---
 
 <HtmlShell lang={he.locale} dir={he.dir} title={he.name} description={he.description} alternateHref="/en">

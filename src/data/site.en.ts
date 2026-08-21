@@ -16,7 +16,7 @@ export const en: SiteData = {
   locale: "en",
   dir: "ltr",
   name: "Liraz Axelrad",
-  tagline: "Lorem ipsum dolor sit amet",
+  tagline: "Product Management, Meditation: Mentoring & Teaching",
   description: "Liraz Axelrad — product management, meditation, and life in Berlin",
   homeHref: "/en",
   writing: {
