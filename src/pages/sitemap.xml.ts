@@ -1,26 +1,28 @@
 import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
 import { he } from "../data/site.he";
-import { en } from "../data/site.en";
+import { allTags } from "../lib/writing";
 
 export const GET: APIRoute = async ({ site }) => {
   const baseUrl = (site?.href ?? "https://lirazaxelrad.com/").replace(/\/$/, "");
 
   const menuHe = await getCollection("menuHe");
   const menuEn = await getCollection("menuEn");
+  const writingEn = await getCollection("writingEn");
 
   const heRoutes = [
     "",
     ...menuHe.map((entry) => entry.data.href),
     "/writing",
     "/contact",
-    ...he.writing.posts.map((p) => `/writing/${p.slug}`),
+    ...(he.writing.posts ?? []).map((p) => `/writing/${p.slug}`),
   ];
   const enRoutes = [
     "/en",
     ...menuEn.map((entry) => entry.data.href),
     "/en/contact",
-    ...en.writing.posts.map((p) => `/en/writing/${p.slug}`),
+    ...writingEn.map((post) => `/en/writing/${post.id}`),
+    ...allTags(writingEn).map(({ slug }) => `/en/writing/tag/${slug}`),
   ];
 
   const urls = [...new Set([...heRoutes, ...enRoutes])];

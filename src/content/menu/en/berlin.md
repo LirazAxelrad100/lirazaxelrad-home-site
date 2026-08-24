@@ -1,5 +1,5 @@
 ---
-order: 5
+order: 6
 label: "Berlin, Berlin!"
 eyebrow: "Latest writing"
 title: "Lorem ipsum dolor sit amet"

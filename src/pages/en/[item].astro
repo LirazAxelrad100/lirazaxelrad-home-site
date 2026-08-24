@@ -5,7 +5,7 @@ import MenuItemContent from "../../components/pages/MenuItemContent.astro";
 import { en } from "../../data/site.en";
 import { buildMenuItems, splitParagraphs } from "../../lib/menu";
 
-const SHARED_IDS = ["about", "pm", "meditation", "berlin"];
+const SHARED_IDS = ["about", "pm", "meditation", "migration", "berlin"];
 
 export async function getStaticPaths() {
   const entries = await getCollection("menuEn");

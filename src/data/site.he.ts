@@ -5,7 +5,7 @@ import type { SiteData } from "./types";
 // field labels, buttons) are real so the UI itself is testable.
 
 const p1 =
-  "בכל נושא, באמת, מוזמנים ליצור איתי קשר. גם בשביל סתם לקשקש.";
+  "לבדיקת אפשרות של עבודה ביחד, על כל אחד מהנושאים - ניהול מוצר, מדיטציה, הגירה, ביקור בברלין - צרו קשר ונקבע שיחה ונבדוק אם יש יש התאמה ועניין להמשיך. שיחה ראשונה, חצי שעה, חינם.";
 const p2 =
   "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.";
 const p3 =

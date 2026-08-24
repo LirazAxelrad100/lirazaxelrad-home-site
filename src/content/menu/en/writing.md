@@ -1,5 +1,5 @@
 ---
-order: 4
+order: 5
 label: "Writing"
 eyebrow: "Writing"
 title: "Lorem ipsum dolor sit amet"

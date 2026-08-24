@@ -11,6 +11,12 @@ const menuSchema = z.object({
   image: z.string().optional(),
 });
 
+const writingSchema = z.object({
+  title: z.string(),
+  date: z.string(),
+  tags: z.array(z.string()).default([]),
+});
+
 export const collections = {
   menuHe: defineCollection({
     loader: glob({ pattern: "**/*.md", base: "./src/content/menu/he" }),
@@ -19,5 +25,9 @@ export const collections = {
   menuEn: defineCollection({
     loader: glob({ pattern: "**/*.md", base: "./src/content/menu/en" }),
     schema: menuSchema,
+  }),
+  writingEn: defineCollection({
+    loader: glob({ pattern: "**/*.md", base: "./src/content/writing/en" }),
+    schema: writingSchema,
   }),
 };

@@ -1,0 +1,31 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import WritingListContent from "../../../../components/pages/WritingListContent.astro";
+import { en } from "../../../../data/site.en";
+import { allTags, slugifyTag, sortPostsByDateDesc } from "../../../../lib/writing";
+import { buildMenuItems } from "../../../../lib/menu";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("writingEn");
+  return allTags(posts).map(({ slug, label }) => ({
+    params: { tag: slug },
+    props: {
+      label,
+      posts: sortPostsByDateDesc(posts.filter((post) => post.data.tags.some((tag) => slugifyTag(tag) === slug))),
+    },
+  }));
+}
+
+const { label, posts } = Astro.props;
+const items = buildMenuItems(await getCollection("menuEn"));
+---
+
+<BaseLayout
+  site={en}
+  title={`#${label} — ${en.writing.title} — ${en.name}`}
+  description={en.description}
+  alternateHref="/writing"
+>
+  <WritingListContent site={en} writingBasePath="/en/writing" posts={posts} items={items} activeTagLabel={label} />
+</BaseLayout>

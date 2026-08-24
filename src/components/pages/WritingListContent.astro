@@ -1,30 +1,99 @@
 ---
-import type { SiteData } from "../../data/types";
+import { marked } from "marked";
+import type { CollectionEntry } from "astro:content";
+import type { MenuItem, SiteData } from "../../data/types";
+import { firstParagraph } from "../../lib/menu";
+import { slugifyTag } from "../../lib/writing";
+import ItemNav from "./ItemNav.astro";
 
 interface Props {
   site: SiteData;
   writingBasePath: string;
+  posts: CollectionEntry<"writingEn">[];
+  items: MenuItem[];
+  activeTagLabel?: string;
 }
 
-const { site, writingBasePath } = Astro.props;
+const { site, writingBasePath, posts, items, activeTagLabel } = Astro.props;
 const { writing } = site;
+const [featured, ...rest] = posts;
+const readMoreLabel = writing.readMoreLabel ?? "Continue reading";
+const FeaturedTitleTag = activeTagLabel ? "h2" : "h1";
 ---
 
-<section class="mx-auto max-w-[760px] px-[6vw] pb-8 pt-16">
-  <h1 class="m-0 mb-3 font-rubik text-[clamp(28px,3.5vw,38px)] font-medium">{writing.title}</h1>
-  <p class="m-0 text-[16px] text-text-muted">{writing.subtitle}</p>
-</section>
-
-<section class="mx-auto max-w-[760px] px-[6vw] pb-24 pt-5">
-  <div class="flex flex-col">
-    {writing.posts.map((post) => (
-      <a
-        href={`${writingBasePath}/${post.slug}`}
-        class="flex items-center justify-between gap-6 border-b border-border py-[22px] text-inherit no-underline hover:text-accent"
-      >
-        <span class="text-[18px]">{post.title}</span>
-        <span class="whitespace-nowrap text-[14px] text-text-muted-soft">{post.date}</span>
+{
+  activeTagLabel && (
+    <div class="px-[6vw] pt-4 md:pt-[52px]">
+      <a href={writingBasePath} class="text-[14px] no-underline">
+        ← {writing.allPostsLabel}
       </a>
-    ))}
-  </div>
-</section>
+    </div>
+  )
+}
+
+<div class={`flex flex-col items-stretch gap-6 px-[6vw] pb-24 md:flex-row ${activeTagLabel ? "pt-6" : "pt-4 md:pt-[68px]"}`}>
+  <ItemNav items={items} currentKey="writing" />
+  <section class="flex-1 self-start p-9 md:max-w-[760px]">
+    {
+      activeTagLabel && (
+        <h1 class="m-0 mb-8 font-rubik text-[clamp(24px,3vw,32px)] font-medium leading-tight">
+          Tagged: {activeTagLabel}
+        </h1>
+      )
+    }
+
+    {
+      featured && (
+        <article class="pb-10">
+          <FeaturedTitleTag class="m-0 mb-2 font-rubik text-[clamp(24px,3vw,32px)] font-medium leading-tight">
+            <a href={`${writingBasePath}/${featured.id}`} class="text-inherit no-underline hover:text-accent">
+              {featured.data.title}
+            </a>
+          </FeaturedTitleTag>
+          <div class="mb-5 flex flex-wrap items-center gap-3 text-[13px]">
+            <span class="tracking-[0.5px] text-accent">{featured.data.date}</span>
+            {featured.data.tags.map((tag) => (
+              <a
+                href={`${writingBasePath}/tag/${slugifyTag(tag)}`}
+                class="rounded-full border border-border px-3 py-1 text-[12px] text-text-muted no-underline hover:border-accent hover:text-accent"
+              >
+                #{tag}
+              </a>
+            ))}
+          </div>
+          <div class="text-[17px] leading-[1.85] text-text-body [&_p]:mb-[18px] [&_p:last-child]:mb-0 [&_ul]:mb-[18px] [&_ul]:list-disc [&_ul]:ps-6 [&_ul>li]:mb-2 [&_a]:text-accent [&_a]:underline [&_a]:underline-offset-2">
+            <Fragment set:html={marked.parse(featured.body ?? "")} />
+          </div>
+        </article>
+      )
+    }
+
+    <div class="flex flex-col">
+      {rest.map((post) => (
+        <div class="border-b border-border py-[22px]">
+          <a
+            href={`${writingBasePath}/${post.id}`}
+            class="text-[18px] text-inherit no-underline hover:text-accent"
+          >
+            {post.data.title}
+          </a>
+          <div class="mb-2 mt-2 flex flex-wrap items-center gap-3 text-[13px]">
+            <span class="whitespace-nowrap text-text-muted-soft">{post.data.date}</span>
+            {post.data.tags.map((tag) => (
+              <a
+                href={`${writingBasePath}/tag/${slugifyTag(tag)}`}
+                class="rounded-full border border-border px-2.5 py-0.5 text-[11px] text-text-muted no-underline hover:border-accent hover:text-accent"
+              >
+                #{tag}
+              </a>
+            ))}
+          </div>
+          <p class="m-0 mb-2 text-[15px] text-text-muted">{firstParagraph(post.body ?? "")}</p>
+          <a href={`${writingBasePath}/${post.id}`} class="text-[13px] text-accent no-underline hover:opacity-80">
+            {readMoreLabel} →
+          </a>
+        </div>
+      ))}
+    </div>
+  </section>
+</div>

@@ -1,20 +1,24 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import WritingPostContent from "../../../components/pages/WritingPostContent.astro";
 import { en } from "../../../data/site.en";
+import { buildMenuItems } from "../../../lib/menu";
 
-export function getStaticPaths() {
-  return en.writing.posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+export async function getStaticPaths() {
+  const posts = await getCollection("writingEn");
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
 }
 
 const { post } = Astro.props;
+const items = buildMenuItems(await getCollection("menuEn"));
 ---
 
 <BaseLayout
   site={en}
-  title={`${post.title} — ${en.name}`}
+  title={`${post.data.title} — ${en.name}`}
   description={en.description}
-  alternateHref={`/writing/${post.slug}`}
+  alternateHref={`/writing/${post.id}`}
 >
-  <WritingPostContent site={en} post={post} writingBasePath="/en/writing" />
+  <WritingPostContent site={en} post={post} writingBasePath="/en/writing" items={items} />
 </BaseLayout>

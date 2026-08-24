@@ -1,0 +1,31 @@
+---
+import type { SiteData } from "../../data/types";
+
+interface Props {
+  site: SiteData;
+  writingBasePath: string;
+}
+
+const { site, writingBasePath } = Astro.props;
+const { writing } = site;
+const posts = writing.posts ?? [];
+---
+
+<section class="mx-auto max-w-[760px] px-[6vw] pb-8 pt-16">
+  <h1 class="m-0 mb-3 font-rubik text-[clamp(28px,3.5vw,38px)] font-medium">{writing.title}</h1>
+  <p class="m-0 text-[16px] text-text-muted">{writing.subtitle}</p>
+</section>
+
+<section class="mx-auto max-w-[760px] px-[6vw] pb-24 pt-5">
+  <div class="flex flex-col">
+    {posts.map((post) => (
+      <a
+        href={`${writingBasePath}/${post.slug}`}
+        class="flex items-center justify-between gap-6 border-b border-border py-[22px] text-inherit no-underline hover:text-accent"
+      >
+        <span class="text-[18px]">{post.title}</span>
+        <span class="whitespace-nowrap text-[14px] text-text-muted-soft">{post.date}</span>
+      </a>
+    ))}
+  </div>
+</section>

@@ -1,10 +1,10 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import WritingPostContent from "../../components/pages/WritingPostContent.astro";
+import WritingPostContent from "../../components/pages/LegacyWritingPostContent.astro";
 import { he } from "../../data/site.he";
 
 export function getStaticPaths() {
-  return he.writing.posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+  return (he.writing.posts ?? []).map((post) => ({ params: { slug: post.slug }, props: { post } }));
 }
 
 const { post } = Astro.props;

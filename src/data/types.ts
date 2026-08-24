@@ -12,7 +12,8 @@ export interface WritingListContent {
   title: string;
   subtitle: string;
   allPostsLabel: string;
-  posts: WritingPost[];
+  readMoreLabel?: string;
+  posts?: WritingPost[];
 }
 
 export interface ContactPageContent {

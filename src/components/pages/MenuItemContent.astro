@@ -1,6 +1,7 @@
 ---
 import { marked } from "marked";
 import type { MenuItem } from "../../data/types";
+import ItemNav from "./ItemNav.astro";
 
 interface Props {
   title: string;
@@ -14,34 +15,9 @@ const { title, paragraphs, image, items, currentKey } = Astro.props;
 ---
 
 <div class="flex flex-col items-stretch gap-6 px-[6vw] pb-24 pt-4 md:pt-[68px] md:flex-row">
-  <nav class="hidden flex-shrink-0 flex-col pt-[26px] md:flex md:sticky md:top-24 md:w-[260px] md:self-start">
-    {items.map((item, i) => {
-      const number = String(i + 1).padStart(2, "0");
-      const circleBase =
-        "flex flex-shrink-0 items-center justify-center rounded-full font-rubik transition-all duration-300";
-      return item.key === currentKey ? (
-        <span class="flex items-baseline gap-3 px-4 py-2.5">
-          <span class={`${circleBase} h-[40px] w-[40px] bg-accent text-[15px] font-medium text-white`}>
-            {number}
-          </span>
-          <span class="flex-1 font-rubik text-[16px] font-medium">{item.label}</span>
-        </span>
-      ) : (
-        <a href={item.href} class="group flex items-baseline gap-3 px-4 py-2.5 text-inherit no-underline">
-          <span
-            class={`${circleBase} h-[26px] w-[26px] text-[11px] font-light text-text-muted group-hover:h-[40px] group-hover:w-[40px] group-hover:bg-accent group-hover:text-[15px] group-hover:font-medium group-hover:text-white`}
-          >
-            {number}
-          </span>
-          <span class="flex-1 font-rubik text-[16px] font-extralight transition-[font-weight] duration-150 group-hover:font-medium">
-            {item.label}
-          </span>
-        </a>
-      );
-    })}
-  </nav>
+  <ItemNav items={items} currentKey={currentKey} />
   <section
-    class="flex-1 self-start p-9 text-[17px] leading-[1.85] text-text-body md:max-w-[680px] [&_ul]:mb-[18px] [&_ul]:list-disc [&_ul]:ps-6 [&_ul>li]:mb-2 [&_p]:mb-[18px] [&_p:last-child]:mb-0 [&_strong]:font-semibold [&_a]:text-accent [&_a]:underline [&_a]:underline-offset-2 [&_a:hover]:opacity-80"
+    class="flex-1 self-start p-9 text-[17px] leading-[1.85] text-text-body md:max-w-[680px] [&_ul]:mb-[18px] [&_ul]:list-disc [&_ul]:ps-6 [&_ul>li]:mb-2 [&_p]:mb-[18px] [&_p:last-child]:mb-0 [&_strong]:font-semibold [&_a]:text-accent [&_a]:underline [&_a]:underline-offset-2 [&_a:hover]:opacity-80 [&_img]:mx-auto [&_img]:mt-9 [&_img]:block [&_img]:max-w-full [&_img]:rounded-md"
   >
     <h1 class="m-0 mb-5 font-rubik text-[clamp(28px,3.5vw,38px)] font-medium leading-tight">{title}</h1>
     {paragraphs.map((paragraph) => <Fragment set:html={marked.parse(paragraph)} />)}

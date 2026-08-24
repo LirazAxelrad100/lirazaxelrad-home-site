@@ -5,12 +5,6 @@ import type { SiteData } from "./types";
 
 const p1 =
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.";
-const p2 =
-  "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.";
-const p3 =
-  "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae.";
-const p4 =
-  "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate.";
 
 export const en: SiteData = {
   locale: "en",
@@ -23,26 +17,7 @@ export const en: SiteData = {
     title: "Writing",
     subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     allPostsLabel: "All posts",
-    posts: [
-      {
-        slug: "post-1",
-        title: "Lorem ipsum dolor sit amet consectetur",
-        date: "2026-07-28",
-        body: [p1, p2, p3, p4],
-      },
-      {
-        slug: "post-2",
-        title: "Sed do eiusmod tempor incididunt",
-        date: "2026-07-14",
-        body: [p2, p3, p4],
-      },
-      {
-        slug: "post-3",
-        title: "Ut enim ad minim veniam quis",
-        date: "2026-06-30",
-        body: [p3, p4, p1],
-      },
-    ],
+    readMoreLabel: "Continue reading",
   },
   contact: {
     title: "Contact",
