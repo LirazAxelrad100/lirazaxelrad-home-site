@@ -18,3 +18,5 @@ It turned out to be a big NO. I came back to Berlin and fell in love with the ci
 I'd like to invite you, tourists and visitors, to walk in the city with me.
 
 I'm not a professional tour guide. You don't need me to see the Holocaust Memorial. But if you feel like wandering the corners of the city, stepping into building courtyards, roaming through gardens and parks and places that aren't on any map, I'd love to [plan](/en/contact) something together.
+
+![Berlin](/assets/berlin.jpg)

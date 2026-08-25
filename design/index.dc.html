@@ -115,12 +115,12 @@ class Component extends DCLogic {
 
     const isActive = !!this.state.activeKey;
     const images = {
-      about: './assets/menu-thumb-about.png',
-      blog: './assets/menu-thumb-blog.jpg',
-      migration: './assets/menu-thumb-placeholder.png',
-      meditation: './assets/menu-thumb-meditation.png',
-      pm: './assets/menu-thumb-placeholder.png',
-      support: './assets/menu-thumb-support.jpg'
+      about: './reference-assets/menu-thumb-about.png',
+      blog: './reference-assets/menu-thumb-blog.jpg',
+      migration: './reference-assets/menu-thumb-placeholder.png',
+      meditation: './reference-assets/menu-thumb-meditation.png',
+      pm: './reference-assets/menu-thumb-placeholder.png',
+      support: './reference-assets/menu-thumb-support.jpg'
     };
     const hoverImg = this.state.hoverKey ? images[this.state.hoverKey] : images.about;
 
