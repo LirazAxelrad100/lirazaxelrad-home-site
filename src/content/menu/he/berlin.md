@@ -7,6 +7,12 @@ ctaLabel: "עוד על שוטטות"
 href: "/berlin"
 ---
 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.
+בסביבה הקרובה שלי יש המון אנשים שלא אוהבים את ברלין. חברות שרוצות לעזוב את העיר. חברות שמתכננות לעזוב את העיר. חברות שמתלוננות על העיר. חברות שחושבות שבמקום אחר יהיה להן טוב יותר. אני מבינה אותן, אבל אני לא שותפה.
 
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae.
+אני מאוד אוהבת את ברלין.
+
+זה לקח לי זמן. בעשר השנים הראשונות שלי כאן הייתי בטוחה שאני תכף - כל רגע ממש - בסופו של דבר, אחזור לישראל. בנובמבר 2020, שיא הקורונה, הגעתי לישראל לשלושה חודשים, לבדיקה. אחר כך החלטתי שלא, חזרתי לברלין והתאהבתי בעיר. זאת כמובן הכללה גסה ונוראית, כי ברלין עיר גדולה ועצומה ואני מכירה טוב, ובאופן אינטימי, רק חלקים משתי שכונות שלה: מיטה ופרנצלאואר-ברג.
+
+אני מזמינה אתכם, תיירים ותיירות, מבקרים ומבקרות, לטייל איתי בעיר.
+
+אני לא מדריכת טיולים מקצועית. כדי לראות את האנדרטה ליהודים לא צריך אותי. אם בא לכם לשוטט בפינות של העיר, להיכנס לחצרות של בתים, להסתובב בגנים ובפארקים ומקומות שהם ממש לא על שום מפה, אשמח [לתכנן](/contact) משהו ביחד.

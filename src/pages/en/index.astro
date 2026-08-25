@@ -4,10 +4,20 @@ import HtmlShell from "../../layouts/HtmlShell.astro";
 import { HomeMenu } from "../../components/HomeMenu";
 import Footer from "../../components/Footer.astro";
 import { en } from "../../data/site.en";
-import { buildMenuItems } from "../../lib/menu";
+import { buildMenuItems, firstParagraph } from "../../lib/menu";
+import { sortPostsByDateDesc } from "../../lib/writing";
 
 const entries = await getCollection("menuEn");
 const items = buildMenuItems(entries);
+
+// The homepage panel for "Writing" shows the newest blog post instead of
+// its own static teaser text, so it stays current as new posts are added.
+const [newestPost] = sortPostsByDateDesc(await getCollection("writingEn"));
+const writingItem = items.find((item) => item.key === "writing");
+if (newestPost && writingItem) {
+  writingItem.title = newestPost.data.title;
+  writingItem.body = firstParagraph(newestPost.body ?? "");
+}
 ---
 
 <HtmlShell lang={en.locale} dir={en.dir} title={en.name} description={en.description} alternateHref="/">

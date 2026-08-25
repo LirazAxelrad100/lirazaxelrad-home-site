@@ -1,10 +1,9 @@
 import type { SiteData } from "./types";
 
-// Independent English content — not a translation of site.he.ts. Body copy
-// is placeholder Lorem Ipsum; Liraz will supply real English copy later.
+// Independent English content — not a translation of site.he.ts.
 
 const p1 =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.";
+  "Anything relevant to you in this site? If you want to talk PM mentoring, Meditation and well-being, immigration and its challenges or explore Berlin together, get in touch. Will schedule an appointment. If there is chemistry we can talk further. First talk is free.";
 
 export const en: SiteData = {
   locale: "en",
@@ -28,7 +27,7 @@ export const en: SiteData = {
       email: "Email",
       emailPlaceholder: "you@example.com",
       topic: "What are you interested in?",
-      topicOptions: ["Meditation", "Product management mentoring", "Migration & growth / Berlin", "Something else"],
+      topicOptions: ["Product management mentoring", "Meditation", "Migration", "Scrolling in Berlin"],
       message: "Message",
       messagePlaceholder: "Tell me a bit...",
       submit: "Send",

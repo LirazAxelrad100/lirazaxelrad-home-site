@@ -17,13 +17,6 @@ const { nameLabel, footer, compact = false } = Astro.props;
       <a href={`mailto:${footer.email}`} class="text-[14px] text-text-muted no-underline">{footer.email}</a>
     </div>
     <div class="flex items-center gap-5">
-      <a href="#" title="RSS" aria-label="RSS" class="flex items-center text-text-muted transition-colors hover:text-accent">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-          <circle cx="5" cy="19" r="2" fill="currentColor"></circle>
-          <path d="M4 11C10.0751 11 15 15.9249 15 22" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path>
-          <path d="M4 4C13.3888 4 21 11.6112 21 21" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path>
-        </svg>
-      </a>
       <a href={footer.contactHref} class="text-[14px] text-text-muted no-underline transition-colors hover:text-accent">
         {footer.contactLabel}
       </a>

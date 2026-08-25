@@ -4,7 +4,7 @@ import vercel from "@astrojs/vercel";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  site: process.env.PUBLIC_SITE_URL ?? "https://lirazaxelrad.com",
+  site: process.env.PUBLIC_SITE_URL || "https://lirazaxelrad.com",
   output: "static",
   adapter: vercel(),
   server: { port: 3000 },
