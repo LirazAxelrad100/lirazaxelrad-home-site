@@ -37,7 +37,7 @@ const arrow = site.dir === "rtl" ? "→" : "←";
         </a>
       ))}
     </div>
-    <div class="text-[18px] leading-[1.9] text-text-body [&_p]:mb-[22px] [&_p:last-child]:mb-0 [&_ul]:mb-[22px] [&_ul]:list-disc [&_ul]:ps-6 [&_ul>li]:mb-2 [&_a]:text-accent [&_a]:underline [&_a]:underline-offset-2">
+    <div class="text-[18px] leading-[1.9] text-text-body [&_p]:mb-[22px] [&_p:last-child]:mb-0 [&_ul]:mb-[22px] [&_ul]:list-disc [&_ul]:ps-6 [&_ul>li]:mb-2 [&_a]:text-accent [&_a]:underline [&_a]:underline-offset-2 [&_img]:mx-auto [&_img]:mt-9 [&_img]:block [&_img]:max-w-full [&_img]:rounded-md">
       <Fragment set:html={marked.parse(post.body ?? "")} />
     </div>
   </article>
