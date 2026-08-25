@@ -1,5 +1,5 @@
 ---
-title: "We have no need of other worlds. We need mirrors"
+title: "“We have no need of other worlds. We need mirrors”"
 date: "2026-08-25"
 tags: ["LinkedIn", "Product Management"]
 ---

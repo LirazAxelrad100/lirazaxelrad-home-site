@@ -23,4 +23,6 @@ I'm teaching myself AI, and enjoying it enormously. Here's my GitHub, where you'
 
 **Mentoring**
 
+Over the years I've mentored product managers through [Product League](https://productleague.com/) and [Give & Tech](https://giveandtech.org.il/). The results: highly satisfied mentees, many of whom advanced their careers (moved up, changed jobs, grew professionally).
+
 I'm offering myself as a mentor. If you need help with anything related to product management, a space to talk things through, to learn, to vent, to share, to talk shop and figure out how to do what, and also the things underneath the professional stuff: the uncomfortable conversation with your boss, the feedback you were hoping not to get, I'm here for that too. Reach out through the [form](/en/contact). First meeting, a half hour call, free, and then we'll see if it's a good fit to keep working together. I'd love to hear from you.

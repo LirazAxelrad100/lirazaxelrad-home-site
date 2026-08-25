@@ -65,7 +65,7 @@ export const he: SiteData = {
   },
   footer: {
     email: "hello@lirazaxelrad.com",
-    contactLabel: "צור קשר",
+    contactLabel: "צרו קשר",
     contactHref: "/contact",
     socials: [
       { label: "LinkedIn", href: "https://www.linkedin.com/in/lirazaxelrad/" },
