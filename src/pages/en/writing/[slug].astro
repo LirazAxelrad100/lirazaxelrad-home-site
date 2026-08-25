@@ -3,7 +3,6 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import WritingPostContent from "../../../components/pages/WritingPostContent.astro";
 import { en } from "../../../data/site.en";
-import { buildMenuItems } from "../../../lib/menu";
 
 export async function getStaticPaths() {
   const posts = await getCollection("writingEn");
@@ -11,7 +10,6 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const items = buildMenuItems(await getCollection("menuEn"));
 ---
 
 <BaseLayout
@@ -20,5 +18,5 @@ const items = buildMenuItems(await getCollection("menuEn"));
   description={en.description}
   alternateHref={`/writing/${post.id}`}
 >
-  <WritingPostContent site={en} post={post} writingBasePath="/en/writing" items={items} />
+  <WritingPostContent site={en} post={post} writingBasePath="/en/writing" />
 </BaseLayout>

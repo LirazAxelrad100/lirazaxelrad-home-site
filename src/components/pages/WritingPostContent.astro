@@ -1,44 +1,36 @@
 ---
 import { marked } from "marked";
 import type { CollectionEntry } from "astro:content";
-import type { MenuItem, SiteData } from "../../data/types";
+import type { SiteData } from "../../data/types";
 import { slugifyTag } from "../../lib/writing";
-import ItemNav from "./ItemNav.astro";
 
 interface Props {
   site: SiteData;
   post: CollectionEntry<"writingEn">;
   writingBasePath: string;
-  items: MenuItem[];
 }
 
-const { site, post, writingBasePath, items } = Astro.props;
+const { site, post, writingBasePath } = Astro.props;
 const arrow = site.dir === "rtl" ? "→" : "←";
 ---
 
-<div class="px-[6vw] pt-4 md:pt-[52px]">
+<article class="mx-auto max-w-[680px] px-[6vw] md:px-9 pb-24 pt-14">
   <a href={writingBasePath} class="text-[14px] no-underline">
     {arrow} {site.writing.allPostsLabel}
   </a>
-</div>
-
-<div class="flex flex-col items-stretch gap-6 px-[6vw] pb-24 pt-6 md:flex-row">
-  <ItemNav items={items} currentKey="writing" />
-  <article class="flex-1 self-start p-9 md:max-w-[680px]">
-    <h1 class="m-0 mb-2 font-rubik text-[clamp(28px,4vw,40px)] font-medium leading-tight">{post.data.title}</h1>
-    <div class="mb-8 flex flex-wrap items-center gap-3 text-[13px]">
-      <span class="tracking-[0.5px] text-accent">{post.data.date}</span>
-      {post.data.tags.map((tag) => (
-        <a
-          href={`${writingBasePath}/tag/${slugifyTag(tag)}`}
-          class="rounded-full border border-border px-3 py-1 text-[12px] text-text-muted no-underline hover:border-accent hover:text-accent"
-        >
-          #{tag}
-        </a>
-      ))}
-    </div>
-    <div class="text-[18px] leading-[1.9] text-text-body [&_p]:mb-[22px] [&_p:last-child]:mb-0 [&_ul]:mb-[22px] [&_ul]:list-disc [&_ul]:ps-6 [&_ul>li]:mb-2 [&_a]:text-accent [&_a]:underline [&_a]:underline-offset-2 [&_img]:mx-auto [&_img]:mt-9 [&_img]:block [&_img]:max-w-full [&_img]:rounded-md">
-      <Fragment set:html={marked.parse(post.body ?? "")} />
-    </div>
-  </article>
-</div>
+  <h1 class="m-0 mb-2 mt-6 font-rubik text-[clamp(28px,4vw,40px)] font-medium leading-tight">{post.data.title}</h1>
+  <div class="mb-8 flex flex-wrap items-center gap-3 text-[13px]">
+    <span class="tracking-[0.5px] text-accent">{post.data.date}</span>
+    {post.data.tags.map((tag) => (
+      <a
+        href={`${writingBasePath}/tag/${slugifyTag(tag)}`}
+        class="rounded-full border border-border px-3 py-1 text-[12px] text-text-muted no-underline hover:border-accent hover:text-accent"
+      >
+        #{tag}
+      </a>
+    ))}
+  </div>
+  <div class="text-[18px] leading-[1.9] text-text-body [&_p]:mb-[22px] [&_p:last-child]:mb-0 [&_ul]:mb-[22px] [&_ul]:list-disc [&_ul]:ps-6 [&_ul>li]:mb-2 [&_a]:text-accent [&_a]:underline [&_a]:underline-offset-2 [&_img]:mx-auto [&_img]:mt-9 [&_img]:block [&_img]:max-w-full [&_img]:rounded-md">
+    <Fragment set:html={marked.parse(post.body ?? "")} />
+  </div>
+</article>

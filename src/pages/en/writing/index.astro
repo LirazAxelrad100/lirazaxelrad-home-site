@@ -4,12 +4,10 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import WritingListContent from "../../../components/pages/WritingListContent.astro";
 import { en } from "../../../data/site.en";
 import { sortPostsByDateDesc } from "../../../lib/writing";
-import { buildMenuItems } from "../../../lib/menu";
 
 const posts = sortPostsByDateDesc(await getCollection("writingEn"));
-const items = buildMenuItems(await getCollection("menuEn"));
 ---
 
 <BaseLayout site={en} title={`${en.writing.title} — ${en.name}`} description={en.description} alternateHref="/writing">
-  <WritingListContent site={en} writingBasePath="/en/writing" posts={posts} items={items} />
+  <WritingListContent site={en} writingBasePath="/en/writing" posts={posts} />
 </BaseLayout>

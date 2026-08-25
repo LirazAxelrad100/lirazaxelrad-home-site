@@ -4,7 +4,6 @@ import BaseLayout from "../../../../layouts/BaseLayout.astro";
 import WritingListContent from "../../../../components/pages/WritingListContent.astro";
 import { en } from "../../../../data/site.en";
 import { allTags, slugifyTag, sortPostsByDateDesc } from "../../../../lib/writing";
-import { buildMenuItems } from "../../../../lib/menu";
 
 export async function getStaticPaths() {
   const posts = await getCollection("writingEn");
@@ -18,7 +17,6 @@ export async function getStaticPaths() {
 }
 
 const { label, posts } = Astro.props;
-const items = buildMenuItems(await getCollection("menuEn"));
 ---
 
 <BaseLayout
@@ -27,5 +25,5 @@ const items = buildMenuItems(await getCollection("menuEn"));
   description={en.description}
   alternateHref="/writing"
 >
-  <WritingListContent site={en} writingBasePath="/en/writing" posts={posts} items={items} activeTagLabel={label} />
+  <WritingListContent site={en} writingBasePath="/en/writing" posts={posts} activeTagLabel={label} />
 </BaseLayout>
