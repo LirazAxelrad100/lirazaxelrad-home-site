@@ -36,6 +36,6 @@ I offer individuals and groups a framework, guidance and support to begin practi
 
 If you want to practice meditation but don’t know how to start, or how to continue, get in touch. We’ll talk and find a framework that supports you in bringing practice into your life — into your everyday life, into the flow of things, into something you do regularly, like brushing your teeth.
 
-**Groups**
+**Groups + work places**
 
 You can invite me to give a talk, or to lead weekly practice sessions. In your offices or online. Half an hour or an hour.

@@ -11,7 +11,7 @@ const { title, paragraphs, image } = Astro.props;
 ---
 
 <section
-  class="mx-auto max-w-[680px] px-[6vw] md:px-9 pb-24 pt-14 text-[17px] leading-[1.85] text-text-body [&_ul]:mb-[18px] [&_ul]:list-disc [&_ul]:ps-6 [&_ul>li]:mb-2 [&_p]:mb-[18px] [&_p:last-child]:mb-0 [&_strong]:font-semibold [&_a]:text-accent [&_a]:underline [&_a]:underline-offset-2 [&_a:hover]:opacity-80 [&_img]:mx-auto [&_img]:mt-9 [&_img]:block [&_img]:max-w-full [&_img]:rounded-md"
+  class="mx-auto max-w-[680px] px-[6vw] md:px-9 pb-24 pt-14 text-[17px] leading-[1.85] text-text-body [&_ul]:mb-[18px] [&_ul]:list-disc [&_ul]:ps-6 [&_ul>li]:mb-1 [&_ul>li]:leading-normal [&_p]:mb-[18px] [&_p:last-child]:mb-0 [&_strong]:font-semibold [&_a]:text-accent [&_a]:underline [&_a]:underline-offset-2 [&_a:hover]:opacity-80 [&_img]:mx-auto [&_img]:mt-9 [&_img]:block [&_img]:max-w-full [&_img]:rounded-md"
 >
   <h1 class="m-0 mb-5 font-rubik text-[clamp(28px,3.5vw,38px)] font-medium leading-tight">{title}</h1>
   {paragraphs.map((paragraph) => <Fragment set:html={marked.parse(paragraph)} />)}
