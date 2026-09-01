@@ -37,7 +37,11 @@ export const POST: APIRoute = async ({ request }) => {
     // it returns an `error` object instead. Without this check a refused send
     // reports success to the visitor and silently vanishes.
     const { error } = await resend.emails.send({
-      from: "Website contact form <onboarding@resend.dev>",
+      // Sending from the verified domain, not Resend's shared onboarding@resend.dev
+      // test sender — that one may only deliver to the Resend account's own address,
+      // which silently blocked every submission to hello@lirazaxelrad.com.
+      // noreply@ needs no inbox: replies go to the visitor via replyTo below.
+      from: "Website contact form <noreply@lirazaxelrad.com>",
       to: TO_EMAIL,
       replyTo: email,
       subject: `New message from ${name}${topic ? ` — ${topic}` : ""}`,
