@@ -54,6 +54,7 @@ export const he: SiteData = {
       email: "אימייל",
       emailPlaceholder: "you@example.com",
       topic: "מה מעניין אותך?",
+      topicPlaceholder: "באיזה עניין?",
       topicOptions: ["מדיטציה", "ניהול מוצר", "!ברלין, ברלין", "הגירה"],
       message: "הודעה",
       messagePlaceholder: "ספרו לי קצת...",

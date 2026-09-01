@@ -48,7 +48,8 @@ export function ContactForm({ labels }: ContactFormProps) {
         <label className={labelClass} htmlFor="topic">
           {labels.topic}
         </label>
-        <select id="topic" name="topic" className={inputClass}>
+        <select id="topic" name="topic" defaultValue="" className={inputClass}>
+          <option value="">{labels.topicPlaceholder}</option>
           {labels.topicOptions.map((opt) => (
             <option key={opt} value={opt}>
               {opt}

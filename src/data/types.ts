@@ -25,6 +25,8 @@ export interface ContactPageContent {
     email: string;
     emailPlaceholder: string;
     topic: string;
+    /** Shown as the pre-selected first option, so no real topic is picked by default. */
+    topicPlaceholder: string;
     topicOptions: string[];
     message: string;
     messagePlaceholder: string;

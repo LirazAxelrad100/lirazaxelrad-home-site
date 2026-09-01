@@ -27,6 +27,7 @@ export const en: SiteData = {
       email: "Email",
       emailPlaceholder: "you@example.com",
       topic: "What are you interested in?",
+      topicPlaceholder: "Select your topic",
       topicOptions: ["Product management mentoring", "Meditation", "Migration", "Scrolling in Berlin"],
       message: "Message",
       messagePlaceholder: "Tell me a bit...",

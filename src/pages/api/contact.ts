@@ -45,7 +45,8 @@ export const POST: APIRoute = async ({ request }) => {
       to: TO_EMAIL,
       replyTo: email,
       subject: `New message from ${name}${topic ? ` — ${topic}` : ""}`,
-      text: `From: ${name} <${email}>\nTopic: ${topic ?? "-"}\n\n${message}`,
+      // `||` not `??` — an unpicked topic arrives as "", not undefined.
+      text: `From: ${name} <${email}>\nTopic: ${topic || "No topic selected"}\n\n${message}`,
     });
     if (error) {
       console.error("Resend rejected the send", { error, to: TO_EMAIL, from: email });
