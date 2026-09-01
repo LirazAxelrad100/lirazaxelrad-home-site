@@ -33,7 +33,7 @@ I can help with things like:
 
 And it doesn't have to be about solving a specific problem. Sometimes you just need a space to think out loud, talk shop, vent a little, and figure out what to do next.
 
-If you're a Product Manager and you'd like to work with me, get in touch through the [contact form](http://localhost:3000/en/contact).
+If you're a Product Manager and you'd like to work with me, get in touch through the [contact form](/en/contact).
 
 The first meeting is a free 30-minute call. We can use it to get to know each other, talk about what you're looking for, and see whether we'd be a good fit for working together.
 

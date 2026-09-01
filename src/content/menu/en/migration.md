@@ -27,4 +27,4 @@ The first time I migrated as an adult was to India. No plan, no intention behind
 
 That's also part of migration: living without a reference group, without the people we're used to measuring ourselves against. The old one stops being relevant. The new one hasn't formed yet, we're in the process of forming it, and in the middle of that process it can be hard to even remember, to imagine, to hope that one day it will exist. There's a lot of freedom in that, a lot of openness and possibility, living without a reference group, and a lot of difficulty too.
 
-And if anything written here speaks to you, you're warmly welcome to reach out. I'm not a practical relocation consultant. What I do offer is help giving words to what you're going through, and, above all, above all, above all, listening.
+And if anything written here speaks to you, you're warmly welcome to [reach out](/en/contact). I'm not a practical relocation consultant. What I do offer is help giving words to what you're going through, and, above all, above all, above all, listening.

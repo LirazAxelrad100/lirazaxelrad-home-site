@@ -7,7 +7,7 @@ ctaLabel: "More on practicing"
 href: "/en/meditation"
 ---
 
-I invite you - individuals and groups, workplaces, organizations and friends - to practice with me. Before I tell you why practice at all, and why specifically with me, there is one thing I want to make sure doesn’t get lost: **this is an invitation to practice together.**
+I invite you - individuals and groups, workplaces, organizations and friends - to practice with me. Before I tell you why practice at all, and why specifically with me, there is one thing I want to make sure doesn’t get lost: **this is an [invitation](/en/contact) to practice together.**
 
 I have been practicing meditation for many years. Which means that I have been practicing Buddhism for many years, but that is a more complicated statement for me. Buddhism is also a religion, and my relationship with religion is complicated. Meditation is a practice. A method. Something one does. 
 
@@ -30,11 +30,11 @@ I rebelled internally. I don’t want to change, I thought. And if I do change, 
 In November of that same year, a little over six months after my first retreat, I left Israel and moved to Berlin. I continued practicing. And my practice grew and expanded and deepened and spread through me like a wildflower garden growing inside my heart.
 At some point, in order to deepen my practice, I trained as an MBSR teacher, and I am now a certified teacher. I taught the MBSR course in Hebrew and English at a studio in Prenzlauer Berg. I have led guided meditations at my last three workplaces. I facilitate a reading and practice group around the Satipatthana Sutta. I love practicing, and I want practice to fill every part of my life.
 
-I offer individuals and groups a framework, guidance and support to begin practicing, to continue practicing, and to make practice part of their lives.
+I [offer](/en/contact) individuals and groups a framework, guidance and support to begin practicing, to continue practicing, and to make practice part of their lives.
 
 **Individuals**
 
-If you want to practice meditation but don’t know how to start, or how to continue, get in touch. We’ll talk and find a framework that supports you in bringing practice into your life — into your everyday life, into the flow of things, into something you do regularly, like brushing your teeth.
+If you want to practice meditation but don’t know how to start, or how to continue, [get in touch](/en/contact). We’ll talk and find a framework that supports you in bringing practice into your life — into your everyday life, into the flow of things, into something you do regularly, like brushing your teeth.
 
 **Groups + work places**
 
