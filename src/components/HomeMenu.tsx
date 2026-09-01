@@ -22,7 +22,7 @@ export function HomeMenu({ name, tagline, homeHref, dir, items }: HomeMenuProps)
 
   return (
     <div className="flex flex-1 flex-col font-rubik">
-      <div className="flex-shrink-0 px-[6vw] pt-6">
+      <div className="flex-shrink-0 px-[6vw] pt-10 md:pt-6">
         <div className="flex flex-col gap-0">
           <a
             href={homeHref}
@@ -41,7 +41,9 @@ export function HomeMenu({ name, tagline, homeHref, dir, items }: HomeMenuProps)
       </div>
 
       <div className="flex flex-1 flex-col items-stretch gap-6 px-[6vw] pb-0 pt-4 md:flex-row">
-        <nav className={`flex flex-shrink-0 flex-col justify-center transition-[width] duration-300 ${navWidthClass}`}>
+        <nav
+          className={`my-auto flex flex-shrink-0 flex-col justify-center transition-[width] duration-300 md:my-0 ${navWidthClass}`}
+        >
           {items.map((item, i) => {
             const isHover = hoverKey === item.key;
             const circleSize = isHover ? 40 : 26;
