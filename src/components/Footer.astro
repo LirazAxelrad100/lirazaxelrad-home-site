@@ -14,7 +14,12 @@ const { nameLabel, footer, compact = false } = Astro.props;
   <div class={`flex flex-col items-center gap-4 px-[6vw] text-center md:flex-row md:flex-wrap md:items-center md:justify-between md:gap-6 md:text-start ${compact ? "pb-6 pt-6" : "pb-10 pt-12"}`}>
     <div>
       <div class="font-rubik text-[16px] text-text-primary">{nameLabel}</div>
-      <span class="text-[14px] text-text-muted">{footer.email}</span>
+      <a
+        href={`mailto:${footer.email}`}
+        class="text-[14px] text-text-muted no-underline transition-colors hover:text-accent"
+      >
+        {footer.email}
+      </a>
     </div>
     <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 md:justify-start md:gap-5">
       <a href={footer.contactHref} class="whitespace-nowrap text-[14px] text-text-muted no-underline transition-colors hover:text-accent">
