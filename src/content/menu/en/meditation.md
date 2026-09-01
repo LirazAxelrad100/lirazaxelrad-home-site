@@ -30,7 +30,7 @@ I rebelled internally. I don’t want to change, I thought. And if I do change, 
 In November of that same year, a little over six months after my first retreat, I left Israel and moved to Berlin. I continued practicing. And my practice grew and expanded and deepened and spread through me like a wildflower garden growing inside my heart.
 At some point, in order to deepen my practice, I trained as an MBSR teacher, and I am now a certified teacher. I taught the MBSR course in Hebrew and English at a studio in Prenzlauer Berg. I have led guided meditations at my last three workplaces. I facilitate a reading and practice group around the Satipatthana Sutta. I love practicing, and I want practice to fill every part of my life.
 
-I [offer](/en/contact) individuals and groups a framework, guidance and support to begin practicing, to continue practicing, and to make practice part of their lives.
+I offer individuals and groups a framework, guidance and support to begin practicing, to continue practicing, and to make practice part of their lives.
 
 **Individuals**
 
@@ -38,4 +38,4 @@ If you want to practice meditation but don’t know how to start, or how to cont
 
 **Groups + work places**
 
-You can invite me to give a talk, or to lead weekly practice sessions. In your offices or online. Half an hour or an hour.
+You can [invite me](/en/contact) to give a talk, or to lead weekly practice sessions. In your offices or online. Half an hour or an hour.
