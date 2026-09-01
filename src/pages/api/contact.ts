@@ -33,13 +33,20 @@ export const POST: APIRoute = async ({ request }) => {
 
   try {
     const resend = new Resend(apiKey);
-    await resend.emails.send({
+    // The Resend SDK resolves (does not throw) when the API rejects a send —
+    // it returns an `error` object instead. Without this check a refused send
+    // reports success to the visitor and silently vanishes.
+    const { error } = await resend.emails.send({
       from: "Website contact form <onboarding@resend.dev>",
       to: TO_EMAIL,
       replyTo: email,
       subject: `New message from ${name}${topic ? ` — ${topic}` : ""}`,
       text: `From: ${name} <${email}>\nTopic: ${topic ?? "-"}\n\n${message}`,
     });
+    if (error) {
+      console.error("Resend rejected the send", { error, to: TO_EMAIL, from: email });
+      return new Response(JSON.stringify({ error: "send rejected" }), { status: 502 });
+    }
     return new Response(JSON.stringify({ ok: true }), { status: 200 });
   } catch (err) {
     console.error("Resend send failed", err);
