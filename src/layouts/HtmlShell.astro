@@ -25,7 +25,9 @@ const alternateUrl = new URL(alternateHref, Astro.site);
     <link rel="canonical" href={canonicalHref} />
     <link rel="alternate" hreflang={lang} href={canonicalHref} />
     <link rel="alternate" hreflang={alternateLang} href={alternateUrl} />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   </head>
   <body class="min-h-full antialiased">
     <slot />
