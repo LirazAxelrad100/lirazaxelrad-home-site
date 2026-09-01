@@ -50,6 +50,10 @@ export function HomeMenu({ name, tagline, homeHref, dir, items }: HomeMenuProps)
                 key={item.key}
                 href={item.href}
                 onClick={(e) => {
+                  // Below md the panel would open below the fold, so the tap looks
+                  // like nothing happened. There, let the link navigate to the
+                  // item's own page instead of opening the teaser panel.
+                  if (!window.matchMedia("(min-width: 768px)").matches) return;
                   e.preventDefault();
                   setActiveKey(item.key);
                 }}

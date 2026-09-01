@@ -11,19 +11,19 @@ const { nameLabel, footer, compact = false } = Astro.props;
 ---
 
 <footer class={`${compact ? "mt-4" : "mt-20"} border-t border-border font-heebo`}>
-  <div class={`flex flex-wrap items-center justify-between gap-6 px-[6vw] ${compact ? "pb-6 pt-6" : "pb-10 pt-12"}`}>
+  <div class={`flex flex-col items-center gap-4 px-[6vw] text-center md:flex-row md:flex-wrap md:items-center md:justify-between md:gap-6 md:text-start ${compact ? "pb-6 pt-6" : "pb-10 pt-12"}`}>
     <div>
       <div class="font-rubik text-[16px] text-text-primary">{nameLabel}</div>
       <span class="text-[14px] text-text-muted">{footer.email}</span>
     </div>
-    <div class="flex items-center gap-5">
-      <a href={footer.contactHref} class="text-[14px] text-text-muted no-underline transition-colors hover:text-accent">
+    <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 md:justify-start md:gap-5">
+      <a href={footer.contactHref} class="whitespace-nowrap text-[14px] text-text-muted no-underline transition-colors hover:text-accent">
         {footer.contactLabel}
       </a>
       {footer.socials.map((s) => (
-        <a href={s.href} class="text-[14px] text-text-muted no-underline transition-colors hover:text-accent">{s.label}</a>
+        <a href={s.href} class="whitespace-nowrap text-[14px] text-text-muted no-underline transition-colors hover:text-accent">{s.label}</a>
       ))}
-      <a href={footer.mirrorHref} class="text-[13px] text-accent no-underline">{footer.mirrorLabel}</a>
+      <a href={footer.mirrorHref} class="whitespace-nowrap text-[13px] text-accent no-underline">{footer.mirrorLabel}</a>
     </div>
   </div>
   <div class={`${compact ? "pb-5" : "pb-7"} text-center text-[12px] text-text-faint`}>{footer.copyrightText}</div>

@@ -41,8 +41,9 @@ export const en: SiteData = {
     contactLabel: "Contact",
     contactHref: "/en/contact",
     socials: [
-      { label: "LinkedIn", href: "#" },
-      { label: "Instagram", href: "#" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/lirazaxelrad/" },
+      { label: "Instagram", href: "https://www.instagram.com/lirazax/" },
+      { label: "Facebook", href: "https://www.facebook.com/liraz.axelrad" },
     ],
     mirrorHref: "/",
     mirrorLabel: "עברית",
