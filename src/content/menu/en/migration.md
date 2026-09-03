@@ -1,6 +1,6 @@
 ---
 order: 4
-label: "Migration, Relocation, Expats"
+label: "Migration, Transition, Change"
 eyebrow: "Migration, Relocation, Expats"
 title: "Migration is complicated"
 ctaLabel: "More on migration"

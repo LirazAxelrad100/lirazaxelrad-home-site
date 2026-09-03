@@ -1,9 +1,9 @@
 ---
 order: 2
-label: "Product Management, mentoring"
-eyebrow: "Product Management, mentoring"
+label: "Product Management"
+eyebrow: "Product Management, Mentoring"
 title: "What I did so far, what I hope to do"
-ctaLabel: "More on PM'ing"
+ctaLabel: "More on Product Management"
 href: "/en/pm"
 ---
 
