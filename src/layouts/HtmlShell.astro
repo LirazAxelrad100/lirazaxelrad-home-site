@@ -1,4 +1,5 @@
 ---
+import Analytics from "@vercel/analytics/astro";
 import "../styles/global.css";
 import type { Direction, Locale } from "../data/types";
 
@@ -7,13 +8,47 @@ interface Props {
   dir: Direction;
   title: string;
   description: string;
-  alternateHref: string;
+  /** The same page in the other language, or null when it has no counterpart. */
+  alternateHref: string | null;
+  /** Social-share preview image. Defaults to the locale's card from `scripts/make-og.mjs`. */
+  image?: string;
+  /** "article" for writing posts, "website" everywhere else. */
+  ogType?: "website" | "article";
+  /** schema.org structured data for this page — see `src/lib/seo.ts`. */
+  jsonLd?: unknown;
+  /** Keep this page out of search results (still lets crawlers follow its links). */
+  noindex?: boolean;
 }
 
-const { lang, dir, title, description, alternateHref } = Astro.props;
+const {
+  lang,
+  dir,
+  title,
+  description,
+  alternateHref,
+  image,
+  ogType = "website",
+  jsonLd,
+  noindex = false,
+} = Astro.props;
+
 const alternateLang: Locale = lang === "he" ? "en" : "he";
-const canonicalHref = new URL(Astro.url.pathname, Astro.site);
-const alternateUrl = new URL(alternateHref, Astro.site);
+
+// Canonical URLs on this site carry no trailing slash (the root aside), which
+// is the form sitemap.xml and every internal link already use. Astro hands us
+// pathnames with one at build time, so normalise before building any URL.
+function absolute(path: string): URL {
+  const url = new URL(path, Astro.site);
+  url.pathname = url.pathname.replace(/(.+?)\/$/, "$1");
+  return url;
+}
+
+const canonicalHref = absolute(Astro.url.pathname);
+const alternateUrl = alternateHref ? absolute(alternateHref) : null;
+// Hebrew is the default language of the site, so it's what x-default points at.
+const defaultUrl = lang === "he" ? canonicalHref : alternateUrl;
+const ogImage = absolute(image ?? (lang === "he" ? "/og-he.png" : "/og-en.png"));
+const ogLocale = lang === "he" ? "he_IL" : "en_US";
 ---
 
 <html lang={lang} dir={dir} class="h-full">
@@ -22,14 +57,43 @@ const alternateUrl = new URL(alternateHref, Astro.site);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="author" content="Liraz Axelrad" />
+    {noindex && <meta name="robots" content="noindex, follow" />}
     <link rel="canonical" href={canonicalHref} />
-    <link rel="alternate" hreflang={lang} href={canonicalHref} />
-    <link rel="alternate" hreflang={alternateLang} href={alternateUrl} />
+    {
+      alternateUrl && (
+        <>
+          <link rel="alternate" hreflang={lang} href={canonicalHref} />
+          <link rel="alternate" hreflang={alternateLang} href={alternateUrl} />
+          <link rel="alternate" hreflang="x-default" href={defaultUrl} />
+        </>
+      )
+    }
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="Liraz Axelrad" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalHref} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />}
   </head>
   <body class="min-h-full antialiased">
     <slot />
+    <Analytics />
   </body>
 </html>

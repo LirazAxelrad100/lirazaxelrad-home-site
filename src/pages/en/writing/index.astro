@@ -4,10 +4,20 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import WritingListContent from "../../../components/pages/WritingListContent.astro";
 import { en } from "../../../data/site.en";
 import { sortPostsByDateDesc } from "../../../lib/writing";
+import { blogSchema, siteOrigin } from "../../../lib/seo";
 
 const posts = sortPostsByDateDesc(await getCollection("writingEn"));
+const origin = siteOrigin(Astro.site);
+const description =
+  "Writing by Liraz Axelrad on product management, meditation, migration and life in Berlin.";
 ---
 
-<BaseLayout site={en} title={`${en.writing.title} — ${en.name}`} description={en.description} alternateHref="/writing">
+<BaseLayout
+  site={en}
+  title={`${en.writing.title} — ${en.name}`}
+  description={description}
+  alternateHref={null}
+  jsonLd={blogSchema(en, origin, `${origin}/en/writing`)}
+>
   <WritingListContent site={en} writingBasePath="/en/writing" posts={posts} />
 </BaseLayout>

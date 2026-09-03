@@ -4,6 +4,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import MenuItemContent from "../components/pages/MenuItemContent.astro";
 import { he } from "../data/site.he";
 import { splitParagraphs } from "../lib/menu";
+import { toDescription } from "../lib/seo";
 
 const SHARED_IDS = ["about", "pm", "meditation", "migration", "berlin"];
 
@@ -15,12 +16,14 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const paragraphs = splitParagraphs(entry.body ?? "");
 const alternateHref = SHARED_IDS.includes(entry.id) ? `/en/${entry.id}` : "/en";
+// Each item gets its own meta description from its opening paragraph.
+const description = toDescription(paragraphs[0] ?? "", he.description);
 ---
 
 <BaseLayout
   site={he}
   title={`${entry.data.title} — ${he.name}`}
-  description={he.description}
+  description={description}
   alternateHref={alternateHref}
 >
   <MenuItemContent title={entry.data.title} paragraphs={paragraphs} image={entry.data.image} />

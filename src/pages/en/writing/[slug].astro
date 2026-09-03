@@ -3,6 +3,8 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import WritingPostContent from "../../../components/pages/WritingPostContent.astro";
 import { en } from "../../../data/site.en";
+import { firstParagraph } from "../../../lib/menu";
+import { blogPostingSchema, siteOrigin, toDescription } from "../../../lib/seo";
 
 export async function getStaticPaths() {
   const posts = await getCollection("writingEn");
@@ -10,13 +12,22 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
+const origin = siteOrigin(Astro.site);
+const url = `${origin}/en/writing/${post.id}`;
+const description = toDescription(firstParagraph(post.body ?? ""), en.description);
 ---
 
 <BaseLayout
   site={en}
   title={`${post.data.title} — ${en.name}`}
-  description={en.description}
-  alternateHref={`/writing/${post.id}`}
+  description={description}
+  alternateHref={null}
+  ogType="article"
+  jsonLd={blogPostingSchema(
+    { title: post.data.title, description, date: post.data.date, url, tags: post.data.tags },
+    en,
+    origin,
+  )}
 >
   <WritingPostContent site={en} post={post} writingBasePath="/en/writing" />
 </BaseLayout>

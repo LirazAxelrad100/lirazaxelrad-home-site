@@ -5,12 +5,21 @@ import { HomeMenu } from "../components/HomeMenu";
 import Footer from "../components/Footer.astro";
 import { he } from "../data/site.he";
 import { buildMenuItems } from "../lib/menu";
+import { profilePageSchema, siteOrigin } from "../lib/seo";
 
 const entries = await getCollection("menuHe");
 const items = buildMenuItems(entries);
+const origin = siteOrigin(Astro.site);
 ---
 
-<HtmlShell lang={he.locale} dir={he.dir} title={he.name} description={he.description} alternateHref="/en">
+<HtmlShell
+  lang={he.locale}
+  dir={he.dir}
+  title={`${he.name} — ${he.tagline}`}
+  description={he.description}
+  alternateHref="/en"
+  jsonLd={profilePageSchema(he, origin)}
+>
   <div class="flex h-screen flex-col">
     <HomeMenu client:load name={he.name} tagline={he.tagline} homeHref={he.homeHref} dir={he.dir} items={items} />
     <Footer nameLabel={he.name} footer={he.footer} compact />

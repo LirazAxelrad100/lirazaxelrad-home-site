@@ -1,6 +1,5 @@
 import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
-import { he } from "../data/site.he";
 import { allTags } from "../lib/writing";
 
 export const GET: APIRoute = async ({ site }) => {
@@ -10,13 +9,9 @@ export const GET: APIRoute = async ({ site }) => {
   const menuEn = await getCollection("menuEn");
   const writingEn = await getCollection("writingEn");
 
-  const heRoutes = [
-    "",
-    ...menuHe.map((entry) => entry.data.href),
-    "/writing",
-    "/contact",
-    ...(he.writing.posts ?? []).map((p) => `/writing/${p.slug}`),
-  ];
+  // Hebrew's /writing pages are deliberately absent: they still hold
+  // placeholder copy and are marked noindex, so they don't belong here.
+  const heRoutes = ["/", ...menuHe.map((entry) => entry.data.href), "/contact"];
   const enRoutes = [
     "/en",
     ...menuEn.map((entry) => entry.data.href),

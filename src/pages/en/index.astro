@@ -6,9 +6,11 @@ import Footer from "../../components/Footer.astro";
 import { en } from "../../data/site.en";
 import { buildMenuItems, firstParagraph } from "../../lib/menu";
 import { sortPostsByDateDesc } from "../../lib/writing";
+import { profilePageSchema, siteOrigin } from "../../lib/seo";
 
 const entries = await getCollection("menuEn");
 const items = buildMenuItems(entries);
+const origin = siteOrigin(Astro.site);
 
 // The homepage panel for "Writing" shows the newest blog post instead of
 // its own static teaser text, so it stays current as new posts are added.
@@ -20,7 +22,14 @@ if (newestPost && writingItem) {
 }
 ---
 
-<HtmlShell lang={en.locale} dir={en.dir} title={en.name} description={en.description} alternateHref="/">
+<HtmlShell
+  lang={en.locale}
+  dir={en.dir}
+  title={`${en.name} — ${en.tagline}`}
+  description={en.description}
+  alternateHref="/"
+  jsonLd={profilePageSchema(en, origin)}
+>
   <div class="flex h-screen flex-col">
     <HomeMenu client:load name={en.name} tagline={en.tagline} homeHref={en.homeHref} dir={en.dir} items={items} />
     <Footer nameLabel={en.name} footer={en.footer} compact />

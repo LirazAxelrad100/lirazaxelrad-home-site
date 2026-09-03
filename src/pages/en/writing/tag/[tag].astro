@@ -17,13 +17,14 @@ export async function getStaticPaths() {
 }
 
 const { label, posts } = Astro.props;
+const description = `Posts by Liraz Axelrad tagged ${label}.`;
 ---
 
 <BaseLayout
   site={en}
   title={`#${label} — ${en.writing.title} — ${en.name}`}
-  description={en.description}
-  alternateHref="/writing"
+  description={description}
+  alternateHref={null}
 >
   <WritingListContent site={en} writingBasePath="/en/writing" posts={posts} activeTagLabel={label} />
 </BaseLayout>

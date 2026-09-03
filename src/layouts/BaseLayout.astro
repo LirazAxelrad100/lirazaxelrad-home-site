@@ -8,13 +8,27 @@ interface Props {
   site: SiteData;
   title: string;
   description: string;
-  alternateHref: string;
+  alternateHref: string | null;
+  image?: string;
+  ogType?: "website" | "article";
+  jsonLd?: unknown;
+  noindex?: boolean;
 }
 
-const { site, title, description, alternateHref } = Astro.props;
+const { site, title, description, alternateHref, image, ogType, jsonLd, noindex } = Astro.props;
 ---
 
-<HtmlShell lang={site.locale} dir={site.dir} title={title} description={description} alternateHref={alternateHref}>
+<HtmlShell
+  lang={site.locale}
+  dir={site.dir}
+  title={title}
+  description={description}
+  alternateHref={alternateHref}
+  image={image}
+  ogType={ogType}
+  jsonLd={jsonLd}
+  noindex={noindex}
+>
   <div class="flex min-h-screen flex-col font-heebo">
     <Header name={site.name} tagline={site.tagline} homeHref={site.homeHref} />
     <main class="flex-1">

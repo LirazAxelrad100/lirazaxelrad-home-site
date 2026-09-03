@@ -2,8 +2,14 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ContactContent from "../components/pages/ContactContent.astro";
 import { he } from "../data/site.he";
+import { toDescription } from "../lib/seo";
 ---
 
-<BaseLayout site={he} title={`${he.contact.title} — ${he.name}`} description={he.description} alternateHref="/en/contact">
+<BaseLayout
+  site={he}
+  title={`${he.contact.title} — ${he.name}`}
+  description={toDescription(he.contact.intro, he.description)}
+  alternateHref="/en/contact"
+>
   <ContactContent site={he} />
 </BaseLayout>

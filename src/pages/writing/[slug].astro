@@ -14,7 +14,8 @@ const { post } = Astro.props;
   site={he}
   title={`${post.title} — ${he.name}`}
   description={he.description}
-  alternateHref={`/en/writing/${post.slug}`}
+  alternateHref={null}
+  noindex
 >
   <WritingPostContent site={he} post={post} writingBasePath="/writing" />
 </BaseLayout>

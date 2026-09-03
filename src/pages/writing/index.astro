@@ -4,6 +4,12 @@ import WritingListContent from "../../components/pages/LegacyWritingListContent.
 import { he } from "../../data/site.he";
 ---
 
-<BaseLayout site={he} title={`${he.writing.title} — ${he.name}`} description={he.description} alternateHref="/en/writing">
+<BaseLayout
+  site={he}
+  title={`${he.writing.title} — ${he.name}`}
+  description={he.description}
+  alternateHref={null}
+  noindex
+>
   <WritingListContent site={he} writingBasePath="/writing" />
 </BaseLayout>
