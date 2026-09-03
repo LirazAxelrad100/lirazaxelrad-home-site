@@ -1,6 +1,6 @@
 ---
 order: 2
-label: "Product Management"
+label: "Product Management, Mentoring"
 eyebrow: "Product Management, Mentoring"
 title: "What I did so far, what I hope to do"
 ctaLabel: "More on Product Management"

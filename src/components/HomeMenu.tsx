@@ -18,7 +18,9 @@ export function HomeMenu({ name, tagline, homeHref, dir, items }: HomeMenuProps)
   const active = items.find((m) => m.key === activeKey) ?? null;
   const arrow = dir === "rtl" ? "←" : "→";
 
-  const navWidthClass = isActive ? "md:w-[260px]" : "md:w-full md:max-w-[640px]";
+  // 400px is what the longest English label needs to stay on one line; the
+  // panel beside it still gets its full 680px at desktop widths.
+  const navWidthClass = isActive ? "md:w-[400px]" : "md:w-full md:max-w-[640px]";
 
   return (
     <div className="flex flex-1 flex-col font-rubik">
