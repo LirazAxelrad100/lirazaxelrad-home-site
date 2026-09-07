@@ -1,8 +1,8 @@
 ---
 order: 5
-label: "Writing"
-eyebrow: "Writing"
-title: "Writing"
+label: "Posts"
+eyebrow: "Posts"
+title: "Posts"
 ctaLabel: "All posts"
 href: "/en/writing"
 ---

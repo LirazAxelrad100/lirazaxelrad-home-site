@@ -57,6 +57,9 @@ export interface MenuItem {
   href: string;
 }
 
+/** A locale that has a writing section — currently English only. */
+export type SiteDataWithWriting = SiteData & { writing: WritingListContent };
+
 export interface SiteData {
   locale: Locale;
   dir: Direction;
@@ -64,7 +67,8 @@ export interface SiteData {
   tagline: string;
   description: string;
   homeHref: string;
-  writing: WritingListContent;
+  /** English-only: Hebrew has no writing section. */
+  writing?: WritingListContent;
   contact: ContactPageContent;
   footer: FooterContent;
 }

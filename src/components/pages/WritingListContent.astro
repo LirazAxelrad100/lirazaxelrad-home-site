@@ -1,12 +1,12 @@
 ---
 import { marked } from "marked";
 import type { CollectionEntry } from "astro:content";
-import type { SiteData } from "../../data/types";
+import type { SiteDataWithWriting } from "../../data/types";
 import { firstParagraph } from "../../lib/menu";
 import { slugifyTag } from "../../lib/writing";
 
 interface Props {
-  site: SiteData;
+  site: SiteDataWithWriting;
   writingBasePath: string;
   posts: CollectionEntry<"writingEn">[];
   activeTagLabel?: string;
@@ -16,10 +16,18 @@ const { site, writingBasePath, posts, activeTagLabel } = Astro.props;
 const { writing } = site;
 const [featured, ...rest] = posts;
 const readMoreLabel = writing.readMoreLabel ?? "Continue reading";
-const FeaturedTitleTag = activeTagLabel ? "h2" : "h1";
 ---
 
 <section class="mx-auto max-w-[680px] px-[6vw] md:px-9 pb-24 pt-14">
+  {
+    !activeTagLabel && (
+      <div class="mb-10">
+        <h1 class="m-0 font-rubik text-[clamp(28px,3.5vw,38px)] font-medium leading-tight">{writing.title}</h1>
+        {writing.subtitle && <p class="m-0 mt-2 text-[16px] text-text-muted">{writing.subtitle}</p>}
+      </div>
+    )
+  }
+
   {
     activeTagLabel && (
       <div class="mb-8">
@@ -36,11 +44,11 @@ const FeaturedTitleTag = activeTagLabel ? "h2" : "h1";
   {
     featured && (
       <article class="pb-10">
-        <FeaturedTitleTag class="m-0 mb-2 font-rubik text-[clamp(24px,3vw,32px)] font-medium leading-tight">
+        <h2 class="m-0 mb-2 font-rubik text-[clamp(24px,3vw,32px)] font-medium leading-tight">
           <a href={`${writingBasePath}/${featured.id}`} class="text-inherit no-underline hover:text-accent">
             {featured.data.title}
           </a>
-        </FeaturedTitleTag>
+        </h2>
         <div class="mb-5 flex flex-wrap items-center gap-3 text-[13px]">
           <span class="tracking-[0.5px] text-accent">{featured.data.date}</span>
           {featured.data.tags.map((tag) => (

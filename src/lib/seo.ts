@@ -1,4 +1,4 @@
-import type { SiteData } from "../data/types";
+import type { SiteData, SiteDataWithWriting } from "../data/types";
 
 /** Absolute origin of the site, e.g. "https://lirazaxelrad.com" — schema.org needs absolute URLs. */
 export function siteOrigin(site: URL | undefined): string {
@@ -101,7 +101,7 @@ export function blogPostingSchema(
 }
 
 /** `Blog` for the writing index. */
-export function blogSchema(site: SiteData, origin: string, url: string) {
+export function blogSchema(site: SiteDataWithWriting, origin: string, url: string) {
   return {
     "@context": "https://schema.org",
     "@type": "Blog",

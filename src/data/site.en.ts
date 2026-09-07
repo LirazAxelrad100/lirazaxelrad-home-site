@@ -1,11 +1,11 @@
-import type { SiteData } from "./types";
+import type { SiteDataWithWriting } from "./types";
 
 // Independent English content — not a translation of site.he.ts.
 
 const p1 =
   "Anything relevant to you in this site? If you want to talk PM mentoring, Meditation and well-being, immigration and its challenges or explore Berlin together, get in touch. Will schedule an appointment. If there is chemistry we can talk further. First talk is free.";
 
-export const en: SiteData = {
+export const en: SiteDataWithWriting = {
   locale: "en",
   dir: "ltr",
   name: "Liraz Axelrad",
@@ -13,8 +13,8 @@ export const en: SiteData = {
   description: "Liraz Axelrad — product management, meditation, and life in Berlin",
   homeHref: "/en",
   writing: {
-    title: "Writing",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    title: "Posts",
+    subtitle: "Instead of a blog, posts I've published in other outlets",
     allPostsLabel: "All posts",
     readMoreLabel: "Continue reading",
   },

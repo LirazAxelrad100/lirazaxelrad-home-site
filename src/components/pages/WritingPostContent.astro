@@ -1,11 +1,11 @@
 ---
 import { marked } from "marked";
 import type { CollectionEntry } from "astro:content";
-import type { SiteData } from "../../data/types";
+import type { SiteDataWithWriting } from "../../data/types";
 import { slugifyTag } from "../../lib/writing";
 
 interface Props {
-  site: SiteData;
+  site: SiteDataWithWriting;
   post: CollectionEntry<"writingEn">;
   writingBasePath: string;
 }
