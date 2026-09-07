@@ -1,0 +1,106 @@
+---
+/**
+ * Liraz's approval screen. She reaches it from the link in the request email.
+ *
+ * The email deliberately links here rather than to a one-click approve URL:
+ * mail providers follow links in messages to scan them, and a GET that
+ * confirmed a booking could be triggered by a scanner rather than by her.
+ * The buttons below POST instead, so approving is always a real click.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { en } from "../data/site.en";
+import { bookingConfig } from "../config/booking";
+import { formatInZone, verifyBooking } from "../lib/booking";
+
+export const prerender = false;
+
+const token = Astro.url.searchParams.get("token") ?? "";
+const done = Astro.url.searchParams.get("done");
+const secret = import.meta.env.BOOKING_SECRET;
+const booking = token && secret ? verifyBooking(token, secret) : null;
+
+const rows = booking
+  ? [
+      ["When (your time)", formatInZone(booking.start, bookingConfig.timeZone)],
+      ["When (their time)", `${formatInZone(booking.start, booking.visitorTimeZone)} — ${booking.visitorTimeZone}`],
+      ["Name", booking.name],
+      ["Email", booking.email],
+      ["Phone", booking.phone || "—"],
+      ["Topic", booking.topic || "—"],
+    ]
+  : [];
+---
+
+<BaseLayout site={en} title="Review call request" description="Approve or decline a call request." alternateHref={null} noindex>
+  <section class="mx-auto max-w-[640px] px-[6vw] pb-24 pt-16">
+    {!booking && (
+      <>
+        <h1 class="m-0 mb-3.5 font-rubik text-[clamp(28px,3.5vw,38px)] font-medium leading-tight">Link not valid</h1>
+        <p class="m-0 text-[16px] leading-[1.7] text-text-muted">
+          This approval link could not be read. It may have been altered in transit — open the original link from the
+          request email.
+        </p>
+      </>
+    )}
+
+    {booking && done === "approved" && (
+      <>
+        <h1 class="m-0 mb-3.5 font-rubik text-[clamp(28px,3.5vw,38px)] font-medium leading-tight">Approved</h1>
+        <p class="m-0 mb-2 text-[16px] leading-[1.7] text-text-muted">
+          {booking.name} has been sent a confirmation. You have a copy with the calendar invitation — accept it to put
+          the call in your calendar.
+        </p>
+      </>
+    )}
+
+    {booking && done === "declined" && (
+      <>
+        <h1 class="m-0 mb-3.5 font-rubik text-[clamp(28px,3.5vw,38px)] font-medium leading-tight">Declined</h1>
+        <p class="m-0 text-[16px] leading-[1.7] text-text-muted">
+          {booking.name} has been told the time does not work, and invited to pick another.
+        </p>
+      </>
+    )}
+
+    {booking && !done && (
+      <>
+        <h1 class="m-0 mb-3.5 font-rubik text-[clamp(28px,3.5vw,38px)] font-medium leading-tight">Call request</h1>
+        <p class="m-0 mb-8 text-[16px] leading-[1.7] text-text-muted">
+          Nothing has been confirmed yet. {booking.name} is told only once you choose below.
+        </p>
+
+        <dl class="m-0 mb-8 grid grid-cols-[max-content_1fr] gap-x-6 gap-y-3 text-[15px]">
+          {rows.map(([label, value]) => (
+            <>
+              <dt class="text-text-muted-soft">{label}</dt>
+              <dd class="m-0 text-text-body">{value}</dd>
+            </>
+          ))}
+        </dl>
+
+        <div class="flex flex-wrap gap-3">
+          <form method="POST" action="/api/booking-decision">
+            <input type="hidden" name="token" value={token} />
+            <input type="hidden" name="action" value="approve" />
+            <button
+              type="submit"
+              class="rounded bg-accent px-8 py-3.5 font-heebo text-[15px] font-semibold text-white"
+            >
+              Approve and send confirmation
+            </button>
+          </form>
+          <form method="POST" action="/api/booking-decision">
+            <input type="hidden" name="token" value={token} />
+            <input type="hidden" name="action" value="decline" />
+            <button
+              type="submit"
+              class="rounded border border-border px-8 py-3.5 font-heebo text-[15px] text-text-body"
+            >
+              Decline
+            </button>
+          </form>
+        </div>
+      </>
+    )}
+  </section>
+</BaseLayout>

@@ -37,6 +37,31 @@ export interface ContactPageContent {
   directEmailLabel: string;
 }
 
+/** Copy for the "book a call" tab on the contact page. */
+export interface BookingContent {
+  tabBook: string;
+  tabWrite: string;
+  intro: string;
+  loading: string;
+  noSlots: string;
+  pickTime: string;
+  /** `{zone}` is replaced with the visitor's own timezone. */
+  timeZoneNote: string;
+  changeSlot: string;
+  name: string;
+  namePlaceholder: string;
+  email: string;
+  emailPlaceholder: string;
+  phone: string;
+  phonePlaceholder: string;
+  topic: string;
+  submit: string;
+  sending: string;
+  successTitle: string;
+  successBody: string;
+  errorMessage: string;
+}
+
 export interface FooterContent {
   email: string;
   contactLabel: string;
@@ -70,5 +95,6 @@ export interface SiteData {
   /** English-only: Hebrew has no writing section. */
   writing?: WritingListContent;
   contact: ContactPageContent;
+  booking: BookingContent;
   footer: FooterContent;
 }
