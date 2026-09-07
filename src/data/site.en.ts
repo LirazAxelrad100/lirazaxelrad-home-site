@@ -3,7 +3,7 @@ import type { SiteDataWithWriting } from "./types";
 // Independent English content — not a translation of site.he.ts.
 
 const p1 =
-  "Anything relevant to you in this site? If you want to talk PM mentoring, Meditation and well-being, immigration and its challenges or explore Berlin together, get in touch. Will schedule an appointment. If there is chemistry we can talk further. First talk is free.";
+  "Anything relevant to you in this site? If you want to talk PM mentoring, Meditation and well-being, immigration and its challenges or explore Berlin together, get in touch or schedule an appointment. If there is chemistry we can talk further. First talk is free.";
 
 export const en: SiteDataWithWriting = {
   locale: "en",
