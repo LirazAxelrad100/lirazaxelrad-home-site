@@ -201,7 +201,7 @@ Consulting session, no code written. Liraz's goal: **paid work as a meditation /
 
 ### Still open — Liraz starts drafting ~2026-09-08
 - The landing-page outline and copy (order suggested: line → outline → copy).
-- Whether the **English homepage itself becomes this pitch**, or it lives as a separate page. Claude's view: a visitor arriving from LinkedIn shouldn't meet a six-item menu and have to work out what she sells — the argument should be the front door.
+- **DECIDED 2026-09-07: the English homepage is replaced by the pitch**, not supplemented by it. Liraz chose this herself and named the cost — she believes she can do the other work well but accepts she cannot sell all of it at once. Worth remembering the framing that made it sit easier, in case she wavers: she is closing a storefront, not a capability; Hebrew keeps everything and the English pages stay in git, so it is a reversible door; and **one line on About can mention the PM and migration mentoring without giving it equal billing** — what she is giving up is the equal billing, not the work.
 - What happens to the English **PM, Berlin and Migration** pages. Recommendation: fold PM's substance into the credibility framing and **delete the English PM page** rather than orphan it (see the Hebrew `/writing` clean-up for why orphans are worse than deletions); drop Berlin/Migration from English only.
 - She plans to post on LinkedIn and needs this page as the link target. The shorter LinkedIn-surface variant discussed was: *"Meditation for people who ship — taught by someone who did."*
 - The booking feature built the same day is exactly the right CTA for this page — "book a free 30-minute call" is the natural next step for a corporate buyer.
