@@ -54,6 +54,14 @@ export const bookingConfig = {
    */
   blockedDates: [] as string[],
 
+  /**
+   * Whether an all-day entry in your calendar closes that day for bookings.
+   * Off by default: all-day entries are usually birthdays, holidays and
+   * reminders rather than "I am away". Use `blockedDates` above for real
+   * absences, or mark the event Busy and give it real times.
+   */
+  blockOnAllDayEvents: false,
+
   /** Where the approval request is sent, and who the invite comes from. */
   organizerName: "Liraz Axelrad",
   organizerEmail: "hello@lirazaxelrad.com",

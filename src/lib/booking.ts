@@ -1,5 +1,6 @@
 import { createHmac, timingSafeEqual, randomUUID } from "node:crypto";
 import { bookingConfig, type BookingConfig } from "../config/booking";
+import { busyIntervals, overlapsBusy } from "./calendar";
 
 /**
  * Slot maths, signing and calendar-invite building for the booking feature.
@@ -85,9 +86,9 @@ function parseClock(value: string) {
  * Slots step by duration + buffer, so the gap Liraz asked for is built into
  * the grid itself rather than checked afterwards.
  *
- * Note for stage 2: this does not yet know what is already in her calendar,
- * so every slot in an open window is offered. Because she approves each
- * request by hand, a clash is caught by her, not by the visitor.
+ * This is her standing availability only. What is already in her calendar is
+ * subtracted by `offeredSlots` below — kept separate so the pure grid stays
+ * synchronous and testable.
  */
 export function availableSlots(now = Date.now(), config: BookingConfig = bookingConfig): number[] {
   const { timeZone, durationMinutes, bufferMinutes, minNoticeHours, horizonDays } = config;
@@ -131,9 +132,25 @@ export function availableSlots(now = Date.now(), config: BookingConfig = booking
   return slots.sort((a, b) => a - b);
 }
 
+/**
+ * The slots actually offered: her standing availability, minus whatever is
+ * already in her calendar. Both the slot list and the booking endpoint go
+ * through this, so a crafted request cannot book over a real meeting either.
+ */
+export async function offeredSlots(now = Date.now(), config: BookingConfig = bookingConfig): Promise<number[]> {
+  const slots = availableSlots(now, config);
+  if (slots.length === 0) return slots;
+
+  const durationMs = config.durationMinutes * 60_000;
+  const busy = await busyIntervals(slots[0], slots[slots.length - 1] + durationMs, config);
+  if (busy.length === 0) return slots;
+
+  return slots.filter((slot) => !overlapsBusy(slot, slot + durationMs, busy));
+}
+
 /** True if `startMs` is a slot the site is currently offering. */
-export function isOfferedSlot(startMs: number, now = Date.now(), config: BookingConfig = bookingConfig) {
-  return availableSlots(now, config).includes(startMs);
+export async function isOfferedSlot(startMs: number, now = Date.now(), config: BookingConfig = bookingConfig) {
+  return (await offeredSlots(now, config)).includes(startMs);
 }
 
 /** Human-readable time in a given zone, for emails. */

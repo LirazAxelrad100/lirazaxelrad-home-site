@@ -39,7 +39,7 @@ export const POST: APIRoute = async ({ request }) => {
   // The slot is re-checked here rather than trusted from the browser: without
   // this, a crafted request could book any time at all, including the middle
   // of the night or a day that is closed.
-  if (!isOfferedSlot(body.start)) {
+  if (!(await isOfferedSlot(body.start))) {
     return new Response(JSON.stringify({ error: "slot no longer available" }), { status: 409 });
   }
 

@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro";
 import { bookingConfig } from "../../config/booking";
-import { availableSlots } from "../../lib/booking";
+import { offeredSlots } from "../../lib/booking";
 
 export const prerender = false;
 
@@ -9,10 +9,10 @@ export const prerender = false;
  * time so the list is never stale, and returned as instants rather than
  * wall-clock strings so the browser can render them in the visitor's own zone.
  */
-export const GET: APIRoute = () =>
+export const GET: APIRoute = async () =>
   new Response(
     JSON.stringify({
-      slots: availableSlots(),
+      slots: await offeredSlots(),
       durationMinutes: bookingConfig.durationMinutes,
       organizerTimeZone: bookingConfig.timeZone,
     }),
