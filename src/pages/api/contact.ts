@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
 import { Resend } from "resend";
+import { honeypotTripped, rateLimited, tooLong, verifyFormToken } from "../../lib/antispam";
 
 export const prerender = false;
 
@@ -24,6 +25,29 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response(JSON.stringify({ error: "invalid payload" }), { status: 400 });
   }
   const { name, email, topic, message } = body;
+
+  // Same three cheap defences as the booking endpoint; see lib/antispam.ts.
+  const record = body as unknown as Record<string, unknown>;
+  if (honeypotTripped(record)) {
+    console.warn("Contact message rejected: honeypot");
+    return new Response(JSON.stringify({ error: "invalid payload" }), { status: 400 });
+  }
+  if (tooLong(record, { name: 120, email: 200, topic: 200, message: 5000 })) {
+    return new Response(JSON.stringify({ error: "invalid payload" }), { status: 400 });
+  }
+  if (rateLimited(request)) {
+    console.warn("Contact message rejected: rate limited");
+    return new Response(JSON.stringify({ error: "too many requests" }), { status: 429 });
+  }
+
+  const formSecret = import.meta.env.BOOKING_SECRET;
+  if (formSecret) {
+    const verdict = verifyFormToken(record.formToken, formSecret);
+    if (verdict !== "ok") {
+      console.warn("Contact message rejected: form token", verdict);
+      return new Response(JSON.stringify({ error: "invalid payload" }), { status: 400 });
+    }
+  }
 
   const apiKey = import.meta.env.RESEND_API_KEY;
   if (!apiKey) {

@@ -26,9 +26,18 @@ export function BookingPicker({ labels, topicOptions, topicPlaceholder, locale }
   const [slots, setSlots] = useState<number[] | null>(null);
   const [selected, setSelected] = useState<number | null>(null);
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [formToken, setFormToken] = useState("");
 
   const zone = useMemo(visitorTimeZone, []);
   const intlLocale = locale === "he" ? "he-IL" : "en-GB";
+
+  useEffect(() => {
+    // Proof the form was really opened, and when. See lib/antispam.ts.
+    fetch("/api/form-token")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => data?.token && setFormToken(data.token))
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -80,7 +89,7 @@ export function BookingPicker({ labels, topicOptions, topicPlaceholder, locale }
       const res = await fetch("/api/book", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, start: selected, visitorTimeZone: zone, locale }),
+        body: JSON.stringify({ ...data, start: selected, visitorTimeZone: zone, locale, formToken }),
       });
       if (!res.ok) throw new Error("failed");
       setStatus("sent");
@@ -140,7 +149,13 @@ export function BookingPicker({ labels, topicOptions, topicPlaceholder, locale }
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-[18px]">
+    <form onSubmit={handleSubmit} className="relative flex flex-col gap-[18px]">
+      {/* Bots fill every field they find. Positioned off-screen rather than
+          display:none, which some bots detect and skip. */}
+      <div aria-hidden="true" className="absolute left-[-9999px] h-px w-px overflow-hidden">
+        <label htmlFor="booking-website">Leave this empty</label>
+        <input id="booking-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
       <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
         <strong className="font-rubik text-[17px] font-medium">
           {dayLabel(

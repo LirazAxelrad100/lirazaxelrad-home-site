@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import type { ContactPageContent } from "../data/types";
 
 interface ContactFormProps {
@@ -7,6 +7,15 @@ interface ContactFormProps {
 
 export function ContactForm({ labels }: ContactFormProps) {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  // Proof the form was really opened, and when. See lib/antispam.ts.
+  const [formToken, setFormToken] = useState("");
+
+  useEffect(() => {
+    fetch("/api/form-token")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => data?.token && setFormToken(data.token))
+      .catch(() => {});
+  }, []);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -17,7 +26,7 @@ export function ContactForm({ labels }: ContactFormProps) {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, formToken }),
       });
       if (!res.ok) throw new Error("failed");
       setStatus("sent");
@@ -31,7 +40,13 @@ export function ContactForm({ labels }: ContactFormProps) {
   const labelClass = "text-[14px] text-text-body-soft";
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-[18px]">
+    <form onSubmit={handleSubmit} className="relative flex flex-col gap-[18px]">
+      {/* Bots fill every field they find. Positioned off-screen rather than
+          display:none, which some bots detect and skip. */}
+      <div aria-hidden="true" className="absolute left-[-9999px] h-px w-px overflow-hidden">
+        <label htmlFor="contact-website">Leave this empty</label>
+        <input id="contact-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
       <div className="flex flex-col gap-1.5">
         <label className={labelClass} htmlFor="name">
           {labels.name}

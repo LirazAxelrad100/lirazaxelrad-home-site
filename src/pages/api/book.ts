@@ -2,6 +2,7 @@ import type { APIRoute } from "astro";
 import { Resend } from "resend";
 import { bookingConfig } from "../../config/booking";
 import { formatInZone, isOfferedSlot, signBooking, type BookingRequest } from "../../lib/booking";
+import { honeypotTripped, rateLimited, tooLong, verifyFormToken } from "../../lib/antispam";
 
 export const prerender = false;
 
@@ -36,6 +37,22 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response(JSON.stringify({ error: "invalid payload" }), { status: 400 });
   }
 
+  // Spam checks before anything expensive. All three answer 400 rather than
+  // explaining what failed — a bot that learns which check caught it can work
+  // around it, and no real visitor ever sees these.
+  const record = body as unknown as Record<string, unknown>;
+  if (honeypotTripped(record)) {
+    console.warn("Booking request rejected: honeypot");
+    return new Response(JSON.stringify({ error: "invalid payload" }), { status: 400 });
+  }
+  if (tooLong(record, { name: 120, email: 200, phone: 40, topic: 200 })) {
+    return new Response(JSON.stringify({ error: "invalid payload" }), { status: 400 });
+  }
+  if (rateLimited(request)) {
+    console.warn("Booking request rejected: rate limited");
+    return new Response(JSON.stringify({ error: "too many requests" }), { status: 429 });
+  }
+
   // The slot is re-checked here rather than trusted from the browser: without
   // this, a crafted request could book any time at all, including the middle
   // of the night or a day that is closed.
@@ -48,6 +65,12 @@ export const POST: APIRoute = async ({ request }) => {
   if (!apiKey || !secret) {
     console.error("Booking is not configured", { hasApiKey: Boolean(apiKey), hasSecret: Boolean(secret) });
     return new Response(JSON.stringify({ error: "booking not configured" }), { status: 500 });
+  }
+
+  const verdict = verifyFormToken(record.formToken, secret);
+  if (verdict !== "ok") {
+    console.warn("Booking request rejected: form token", verdict);
+    return new Response(JSON.stringify({ error: "invalid payload" }), { status: 400 });
   }
 
   const bookingRequest: BookingRequest = {
