@@ -23,9 +23,10 @@ export interface BusyInterval {
  * triggers a slot lookup, so it is cached in module scope — which survives
  * between warm serverless invocations. Five minutes costs nothing in
  * freshness: Google's own copy of this feed is often hours stale anyway, and
- * Liraz approves every booking by hand.
+ * Liraz approves every booking by hand. The endpoint that uses this is also
+ * cached at the edge, so in practice this runs rarely.
  */
-const FEED_TTL_MS = 5 * 60_000;
+const FEED_TTL_MS = 15 * 60_000;
 let feedCache: { fetchedAt: number; from: number; to: number; intervals: BusyInterval[] } | null = null;
 
 /**
