@@ -59,7 +59,7 @@ export const bookingConfig = {
   organizerEmail: "hello@lirazaxelrad.com",
 
   /** Shown in the confirmation email and the calendar invite. */
-  meetingLocation: "Online — I'll send a video link before the call",
+  meetingLocation: "Google Meet: https://meet.google.com/ujv-vwsk-fcc",
 };
 
 export type BookingConfig = typeof bookingConfig;
