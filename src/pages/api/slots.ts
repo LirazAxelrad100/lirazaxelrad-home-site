@@ -25,15 +25,19 @@ export const GET: APIRoute = async () =>
         // conversion to local time happens in the browser — so there is
         // nothing visitor-specific to leak.
         //
-        // This matters more than the in-process cache: at this site's traffic
-        // almost every visitor would otherwise arrive after that cache had
-        // expired and pay the full 2.2MB download and parse themselves.
-        // `stale-while-revalidate` means even the unlucky one gets an instant
-        // answer while the refresh happens behind them.
+        // The long `stale-while-revalidate` is the important number here, and
+        // it is long *because* this site has few visitors, not despite it. A
+        // cold request costs ~8s (function start, then 2.2MB downloaded and
+        // parsed). With sparse traffic nearly every visitor would be that cold
+        // request. A day-long stale window means the edge always has an answer
+        // to hand back immediately, and the refresh happens behind whoever
+        // triggered it — so the wait lands on nobody.
         //
-        // The cost is that a slot Liraz just blocked can linger a few minutes.
-        // She approves every booking by hand, so that costs one decline.
-        "Cache-Control": "public, s-maxage=300, stale-while-revalidate=3600",
+        // The cost: the first visitor after a very quiet stretch can see slots
+        // up to a day stale, and might request one Liraz has since filled.
+        // She approves every booking by hand, so that costs a decline, not a
+        // double-booking — and the next visitor sees the corrected list.
+        "Cache-Control": "public, s-maxage=300, stale-while-revalidate=86400",
       },
     },
   );
