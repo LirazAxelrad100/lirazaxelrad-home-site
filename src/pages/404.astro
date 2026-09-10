@@ -1,0 +1,58 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { he } from "../data/site.he";
+import { buildMenuItems } from "../lib/menu";
+
+// Most 404s here are old WordPress URLs still in Google's index, so the page
+// speaks Hebrew first and offers the real menu rather than a dead end.
+const items = buildMenuItems(await getCollection("menuHe"));
+---
+
+<BaseLayout
+  site={he}
+  title={`הדף לא נמצא — ${he.name}`}
+  description={he.description}
+  alternateHref={null}
+  noindex={true}
+>
+  <section
+    class="mx-auto max-w-[680px] px-[6vw] md:px-9 pb-24 pt-14 text-[17px] leading-[1.85] text-text-body"
+  >
+    <h1 class="m-0 mb-5 font-rubik text-[clamp(28px,3.5vw,38px)] font-medium leading-tight">
+      הדף לא נמצא
+    </h1>
+    <p class="mb-[18px]">
+      כנראה הגעתם לקישור ישן מהאתר הקודם שלי. האתר נבנה מחדש, והתוכן נמצא עכשיו כאן:
+    </p>
+    <ul class="mb-[18px] list-disc ps-6">
+      {
+        items.map((item) => (
+          <li class="mb-1 leading-normal">
+            <a
+              class="text-accent underline underline-offset-2 hover:opacity-80"
+              href={item.href}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+      <li class="mb-1 leading-normal">
+        <a class="text-accent underline underline-offset-2 hover:opacity-80" href="/contact">
+          {he.footer.contactLabel}
+        </a>
+      </li>
+    </ul>
+    <p class="mb-[18px]">
+      <a class="text-accent underline underline-offset-2 hover:opacity-80" href="/">
+        חזרה לדף הבית
+      </a>
+    </p>
+    <p class="mb-0 text-[15px] opacity-70" dir="ltr" lang="en">
+      Looking for the English site? <a
+        class="text-accent underline underline-offset-2 hover:opacity-80"
+        href="/en">Go to /en</a>.
+    </p>
+  </section>
+</BaseLayout>
