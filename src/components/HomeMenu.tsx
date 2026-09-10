@@ -68,6 +68,13 @@ export function HomeMenu({ name, tagline, homeHref, dir, items }: HomeMenuProps)
                 }`}
               >
                 <span
+                  // The numbers are decoration, and Google was stitching them
+                  // onto the labels ("01אודותי") in the homepage search
+                  // snippet. data-nosnippet keeps the whole menu out of the
+                  // snippet so the meta description is used instead; it does
+                  // not affect indexing or ranking.
+                  aria-hidden="true"
+                  data-nosnippet
                   className="flex flex-shrink-0 items-center justify-center rounded-full border border-transparent font-rubik transition-all duration-300"
                   style={{
                     width: circleSize,
@@ -81,6 +88,7 @@ export function HomeMenu({ name, tagline, homeHref, dir, items }: HomeMenuProps)
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <span
+                  data-nosnippet
                   className={`flex-1 font-rubik font-extralight transition-[font-weight] duration-150 group-hover:font-medium ${
                     isActive ? "text-[16px]" : "text-[22px]"
                   }`}
