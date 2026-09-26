@@ -52,7 +52,7 @@ export const bookingConfig = {
    * One-off days to close completely (holidays, travel), as YYYY-MM-DD in
    * your own timezone.
    */
-  blockedDates: [] as string[],
+  blockedDates: ["2026-10-01"] as string[],
 
   /**
    * Whether an all-day entry in your calendar closes that day for bookings.
