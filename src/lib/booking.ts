@@ -111,7 +111,8 @@ export function availableSlots(now = Date.now(), config: BookingConfig = booking
 
     if (config.blockedDates.includes(isoDate)) continue;
 
-    const windows = config.weeklyAvailability[cursor.getUTCDay()];
+    // A one-off entry for this exact date replaces the weekday's usual hours.
+    const windows = config.dateAvailability[isoDate] ?? config.weeklyAvailability[cursor.getUTCDay()];
     if (!windows?.length) continue;
 
     for (const window of windows) {

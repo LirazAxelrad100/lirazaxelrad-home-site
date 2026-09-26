@@ -50,9 +50,20 @@ export const bookingConfig = {
 
   /**
    * One-off days to close completely (holidays, travel), as YYYY-MM-DD in
-   * your own timezone.
+   * your own timezone. Wins over `dateAvailability` below.
    */
   blockedDates: ["2026-10-01"] as string[],
+
+  /**
+   * One-off hours for a single date, as YYYY-MM-DD in your own timezone.
+   * These REPLACE that day's usual `weeklyAvailability` windows, so use this
+   * when a specific date is open at times the weekday normally is not:
+   *   "2026-10-02": [{ start: "14:00", end: "17:00" }]
+   * Leave a date out and it follows the weekly pattern as usual.
+   */
+  dateAvailability: {
+    "2026-10-02": [{ start: "14:00", end: "17:00" }],
+  } as Record<string, AvailabilityWindow[]>,
 
   /**
    * Whether an all-day entry in your calendar closes that day for bookings.
