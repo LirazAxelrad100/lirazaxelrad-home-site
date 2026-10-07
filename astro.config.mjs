@@ -15,6 +15,15 @@ export default defineConfig({
     "/about-me": "/about",
     "/mbsr": "/meditation",
 
+    // The old site's mindfulness offering pages.
+    "/my-mindfulness-offering": "/meditation",
+    "/my-mindfulness-offering/mindfulness-and-product-managment": "/meditation",
+
+    // The old blog index's pagination. The blog itself now lives on Substack,
+    // so page 2 of it is the Substack archive.
+    "/page/2": "https://lirazaxelrad.substack.com/archive",
+    "/page/3": "https://lirazaxelrad.substack.com/archive",
+
     // The old blog's mindfulness category archive.
     "/category/מיינדפולנס": "/meditation",
     "/category/%D7%9E%D7%99%D7%99%D7%A0%D7%93%D7%A4%D7%95%D7%9C%D7%A0%D7%A1": "/meditation",
